@@ -1,0 +1,62 @@
+import type { FlagId } from "../types/game";
+
+export const FLAG_LABELS: Record<FlagId, string> = {
+  believed_rumor: "소문을 쉽게 믿음",
+  reserved_judgment: "직접 보기 전까지 판단을 미룸",
+  silent_observer: "말없이 지켜봄",
+  misread_yul: "안율의 시선을 오해함",
+  noticed_yul_gaze: "안율이 시선을 피하는 이유를 생각함",
+  spread_dohye_rumor: "이도해의 일을 소문으로 옮김",
+  asked_dohye_gently: "이도해에게 조심스럽게 물음",
+  quiet_support: "말없는 도움을 건넴",
+  heard_dohye_change: "이도해의 변화 욕망을 들음",
+  shared_rooftop_silence: "옥상에서 침묵을 함께함",
+  kept_jinuk_secret: "서진욱의 비밀을 지킴",
+  tempted_to_spread_secret: "서진욱의 비밀을 말하고 싶어짐",
+  enjoyed_gossip: "소문을 재미로 들음",
+  stopped_gossip: "소문 확산을 막음",
+  avoided_gossip: "소문 자리에서 벗어남",
+  called_teacher: "싸움에서 도움을 요청함",
+  watched_fight: "싸움을 방관함",
+  tried_group_stop: "함께 싸움을 말리려 함",
+  understood_jimin: "김지민의 속마음을 짚어 봄",
+  dug_into_secret: "비밀을 더 캐물음",
+  protected_jinuk_secret: "서진욱의 사정을 지키려 함",
+  suspected_yul: "안율을 폭로자로 의심함",
+  helped_hospital: "병원에 함께 가도록 도움",
+  avoided_hospital: "부상 상황에서 물러남",
+  followed_class_mood: "학급 분위기를 따라감",
+  noticed_yul_discomfort: "안율의 불편함을 알아차림",
+  stayed_with_pain: "슬픔 곁에 머무름",
+  stepped_back_from_pain: "슬픔 앞에서 물러남",
+  helped_yul_accept: "안율이 아픔을 인정하도록 도움",
+  waited_for_yul: "안율이 말할 때까지 기다림",
+  doubted_meaning: "찾는 일의 의미를 의심함",
+  searched_for_dohye: "이도해를 함께 찾음",
+  understood_meaning: "의미는 만들어 가는 것임을 생각함",
+  saw_yul_change: "안율의 변화를 조용히 바라봄",
+  named_yul_change: "안율의 변화를 말로 확인함",
+  missed_yul_change: "안율의 변화를 놓침",
+};
+
+export const CORE_FLAG_IDS: FlagId[] = [
+  "reserved_judgment",
+  "noticed_yul_gaze",
+  "asked_dohye_gently",
+  "quiet_support",
+  "kept_jinuk_secret",
+  "stopped_gossip",
+  "protected_jinuk_secret",
+  "stayed_with_pain",
+  "helped_yul_accept",
+  "searched_for_dohye",
+  "understood_meaning",
+  "believed_rumor",
+  "spread_dohye_rumor",
+  "watched_fight",
+  "avoided_hospital",
+];
+
+export function getFlagLabel(flagId: FlagId) {
+  return FLAG_LABELS[flagId] ?? flagId;
+}

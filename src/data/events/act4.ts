@@ -1,0 +1,235 @@
+import type { GameEvent } from "../../types/game";
+import { ENDING_CHECK_EVENT_ID } from "../gameMeta";
+
+export const act4Events: GameEvent[] = [
+  {
+    id: "EVENT_12",
+    act: 4,
+    type: "hidden",
+    title: "고양이의 장례",
+    location: "고양이들이 있던 으슥한 장소",
+    time: "해 질 무렵",
+    backgroundAsset: "backgrounds.catFarewell",
+    characterAssets: [
+      { characterId: "yul", assetKey: "characters.yul.softened", label: "조용히 돕는 안율" },
+      { characterId: "dohye", assetKey: "characters.dohye.sad", label: "고양이를 배웅하는 이도해" },
+    ],
+    narration: [
+      "이도해와 안율은 죽은 고양이를 조용히 배웅한다. 장면은 크거나 극적이지 않다. 다만 누군가의 슬픔을 이상하다고 부르지 않는 시간이 있다.",
+      "당신도 그 자리에 서 있다. 무엇을 말할지보다 어떤 거리를 지킬지가 더 중요해 보인다.",
+    ],
+    choices: [
+      {
+        id: "step-back",
+        text: "불편해 자리를 피한다.",
+        resultText: "당신은 그 슬픔을 어떻게 대해야 할지 몰라 물러난다. 멀어지는 발소리가 유난히 크게 들린다.",
+        effects: {
+          stats: { courage: -2, care: -2 },
+          relations: { dohye: { guard: 5 }, yul: { guard: 2 } },
+          addFlags: ["stepped_back_from_pain"],
+        },
+        nextEventId: "EVENT_13",
+        addHistoryText: "고양이의 장례 자리에서 물러났다.",
+      },
+      {
+        id: "help-quietly",
+        text: "말없이 필요한 일을 돕는다.",
+        resultText: "당신은 설명을 요구하지 않고 손을 보탠다. 이도해는 짧게 고개를 숙이고, 안율은 당신이 곁에 남았다는 사실을 기억한다.",
+        effects: {
+          stats: { care: 6, sight: 3 },
+          relations: { dohye: { trust: 7, guard: -5 }, yul: { trust: 5, guard: -3 } },
+          addFlags: ["stayed_with_pain"],
+        },
+        nextEventId: "EVENT_13",
+        addHistoryText: "고양이의 장례에서 말없이 필요한 일을 도왔다.",
+      },
+      {
+        id: "easy-comfort",
+        text: "“괜찮아질 거야.”라고 쉽게 위로한다.",
+        resultText: "당신은 좋은 말을 고르려 했지만, 말은 슬픔보다 조금 앞서 나간다. 이도해는 희미하게 웃지만 대답하지 않는다.",
+        effects: {
+          stats: { sincerity: 2, sight: -1 },
+          relations: { dohye: { guard: 3 } },
+        },
+        nextEventId: "EVENT_13",
+        addHistoryText: "고양이의 장례에서 쉬운 위로를 건넸다.",
+      },
+    ],
+  },
+  {
+    id: "EVENT_13",
+    act: 4,
+    type: "dialogue",
+    title: "안율의 아버지와 봉안당",
+    location: "봉안당",
+    time: "조용한 오후",
+    backgroundAsset: "backgrounds.columbarium",
+    characterAssets: [
+      { characterId: "yul", assetKey: "characters.yul.softened", label: "아픔을 바라보는 안율" },
+    ],
+    narration: [
+      "안율은 오래 닫아 두었던 이야기를 마주한다. 아버지의 죽음은 설명하기 쉬운 사건이 아니고, 잊는다고 사라지는 것도 아니다.",
+      "당신은 안율의 곁에 있지만, 그의 슬픔을 대신 해결할 수는 없다.",
+    ],
+    speaker: "안율",
+    dialogue: "잊으면 괜찮아질 줄 알았는데, 잊는 것도 잘 안 되더라.",
+    choices: [
+      {
+        id: "tell-forget",
+        text: "이제 잊어야 한다고 말한다.",
+        resultText: "당신의 말은 안율을 앞으로 밀어 주려는 마음에서 나왔지만, 안율은 아직 그 속도를 따라갈 수 없다.",
+        effects: {
+          stats: { care: -2, sight: -2 },
+          relations: { yul: { guard: 5, trust: -2 } },
+        },
+        nextEventId: "EVENT_14",
+        addHistoryText: "안율에게 이제 잊어야 한다고 말했다.",
+      },
+      {
+        id: "accept-pain",
+        text: "잊기보다 인정하는 것도 방법일 수 있다고 말한다.",
+        resultText: "안율은 그 말을 오래 곱씹는다. 슬픔이 사라진 것은 아니지만, 슬픔을 보는 방식이 조금 달라진다.",
+        effects: {
+          stats: { sight: 5, sincerity: 4, care: 3 },
+          relations: { yul: { trust: 7, guard: -5 } },
+          addFlags: ["helped_yul_accept"],
+        },
+        nextEventId: "EVENT_14",
+        addHistoryText: "안율이 아픔을 잊기보다 인정해도 된다고 말했다.",
+      },
+      {
+        id: "wait-yul",
+        text: "말없이 기다려 준다.",
+        resultText: "당신은 결론을 내리지 않는다. 안율은 긴 침묵 끝에 스스로 다음 말을 찾는다.",
+        effects: {
+          stats: { care: 5, sight: 2 },
+          relations: { yul: { trust: 5, guard: -4 } },
+          addFlags: ["waited_for_yul", "helped_yul_accept"],
+        },
+        nextEventId: "EVENT_14",
+        addHistoryText: "봉안당에서 안율이 자기 말을 찾을 때까지 기다렸다.",
+      },
+    ],
+  },
+  {
+    id: "EVENT_14",
+    act: 4,
+    type: "observation",
+    title: "이도해의 실종",
+    location: "이도해의 집 근처와 거리",
+    time: "흐린 오후",
+    backgroundAsset: "backgrounds.missingPosterStreet",
+    characterAssets: [
+      { characterId: "yul", assetKey: "characters.yul.anxious", label: "전단지를 든 안율" },
+    ],
+    narration: [
+      "이도해가 보이지 않는다. 어른들의 말은 충분하지 않고, 골목은 대답하지 않는다.",
+      "안율은 이도해를 찾기 위해 전단지를 든다. 누군가를 찾는 일이 당장 결과를 보장하지 않아도, 그 행동은 의미를 만들 수 있다.",
+    ],
+    choices: [
+      {
+        id: "doubt-meaning",
+        text: "의미 없는 행동일 수 있다고 생각한다.",
+        resultText: "당신은 결과가 보이지 않는 행동을 의심한다. 안율은 흔들리지만 전단지를 내려놓지는 않는다.",
+        effects: {
+          stats: { sight: -1, courage: -1 },
+          relations: { yul: { trust: -2 } },
+          addFlags: ["doubted_meaning"],
+        },
+        nextEventId: "EVENT_15",
+        addHistoryText: "이도해를 찾는 일이 의미 없을지도 모른다고 생각했다.",
+      },
+      {
+        id: "search-dohye",
+        text: "전단지를 함께 돌린다.",
+        resultText: "당신은 안율 곁에서 같은 방향으로 걷는다. 골목마다 답은 없지만, 혼자 걷는 길은 아니게 된다.",
+        effects: {
+          stats: { courage: 5, care: 5 },
+          relations: { yul: { trust: 7, closeness: 4 }, dohye: { trust: 3 } },
+          addFlags: ["searched_for_dohye"],
+        },
+        nextEventId: "EVENT_15",
+        addHistoryText: "이도해를 찾는 전단지를 함께 돌렸다.",
+      },
+      {
+        id: "meaning-made",
+        text: "의미는 스스로 만드는 것 같다고 안율에게 말한다.",
+        resultText: "안율은 한동안 말이 없다. 그리고 다시 전단지를 든다. 그 행동은 작지만, 사라지지 않는 별자리처럼 이어진다.",
+        effects: {
+          stats: { sight: 5, sincerity: 5, care: 3 },
+          relations: { yul: { trust: 6, guard: -4 }, dohye: { trust: 2 } },
+          addFlags: ["searched_for_dohye", "understood_meaning"],
+        },
+        nextEventId: "EVENT_15",
+        addHistoryText: "안율에게 의미는 스스로 만드는 것 같다고 말했다.",
+      },
+    ],
+  },
+  {
+    id: "EVENT_15",
+    act: 4,
+    type: "dialogue",
+    title: "북극성이 된 안율",
+    location: "별이 보이는 밤하늘 아래",
+    time: "밤",
+    backgroundAsset: "backgrounds.starNight",
+    characterAssets: [
+      { characterId: "yul", assetKey: "characters.yul.growth", label: "눈을 들어 바라보는 안율" },
+    ],
+    narration: [
+      "안율은 더 이상 발끝만 보지 않는다. 사람들의 눈을 바라보는 일이 여전히 쉽지는 않지만, 그는 이제 바라보기로 한다.",
+      "이도해가 자신을 찾을 수 있도록, 안율은 북극성 같은 사람이 되겠다고 마음먹는다. 당신은 그 변화를 어떻게 볼지 마지막으로 선택한다.",
+    ],
+    speaker: "안율",
+    dialogue: "누군가가 나를 찾을 수 있게, 나도 빛나는 쪽으로 가 보려고.",
+    choices: [
+      {
+        id: "watch-change",
+        text: "변화를 조용히 바라본다.",
+        resultText: "당신은 안율의 변화를 서둘러 이름 붙이지 않는다. 다만 그가 눈을 들었다는 사실을 오래 바라본다.",
+        effects: {
+          stats: { sight: 3, care: 3 },
+          relations: { yul: { trust: 4, guard: -2 } },
+          addFlags: ["saw_yul_change"],
+        },
+        nextEventId: ENDING_CHECK_EVENT_ID,
+        addHistoryText: "안율의 변화를 조용히 바라보았다.",
+      },
+      {
+        id: "name-change",
+        text: "안율에게 변한 것 같다고 말한다.",
+        resultText: "안율은 당황하지만 피하지 않는다. 당신의 말은 평가가 아니라 함께 확인하는 문장에 가깝다.",
+        effects: {
+          stats: { sincerity: 4, courage: 3 },
+          relations: { yul: { trust: 5, closeness: 3 } },
+          addFlags: ["named_yul_change"],
+        },
+        nextEventId: ENDING_CHECK_EVENT_ID,
+        addHistoryText: "안율에게 변한 것 같다고 조심스럽게 말했다.",
+      },
+      {
+        id: "miss-change",
+        text: "변화가 어색해 예전처럼 대한다.",
+        resultText: "당신은 익숙한 안율의 모습으로 돌아가려 한다. 하지만 안율은 이미 조금 다른 곳을 바라보고 있다.",
+        effects: {
+          stats: { sight: -2 },
+          relations: { yul: { guard: 4 } },
+          addFlags: ["missed_yul_change"],
+        },
+        nextEventId: ENDING_CHECK_EVENT_ID,
+        addHistoryText: "안율의 변화를 충분히 알아보지 못했다.",
+      },
+    ],
+  },
+  {
+    id: ENDING_CHECK_EVENT_ID,
+    act: 4,
+    type: "endingCheck",
+    title: "엔딩 판정",
+    location: "이야기의 끝",
+    time: "선택 이후",
+    backgroundAsset: "backgrounds.polarisEnding",
+    narration: ["지금까지의 선택이 하나의 결말로 모입니다."],
+    choices: [],
+  },
+];

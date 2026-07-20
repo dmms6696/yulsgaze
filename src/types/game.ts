@@ -11,6 +11,21 @@ export type CharacterId =
   | "jimin"
   | "classmates";
 
+export type SceneVisualMode = "background" | "characters" | "illustration";
+
+export type CharacterPosition =
+  | "far-left"
+  | "left"
+  | "center-left"
+  | "center"
+  | "center-right"
+  | "right"
+  | "far-right";
+
+export type SceneOverlay = "none" | "dim" | "rain" | "mist" | "sunset" | "night";
+
+export type SceneTransition = "fade" | "crossfade" | "none";
+
 export type FlagId =
   | "believed_rumor"
   | "reserved_judgment"
@@ -89,6 +104,59 @@ export interface CharacterAssetState {
   characterId: CharacterId;
   assetKey: string;
   label?: string;
+  expression?: string;
+  position?: CharacterPosition;
+  scale?: number;
+  offsetX?: number;
+  offsetY?: number;
+  flipX?: boolean;
+  focus?: boolean;
+  opacity?: number;
+  layer?: number;
+}
+
+export interface SceneCharacter {
+  characterId: CharacterId;
+  expression?: string;
+  position?: CharacterPosition;
+  scale?: number;
+  offsetX?: number;
+  offsetY?: number;
+  flipX?: boolean;
+  focus?: boolean;
+  opacity?: number;
+  layer?: number;
+  label?: string;
+}
+
+export interface SceneProp {
+  assetKey: string;
+  label?: string;
+  alt?: string;
+  position?: CharacterPosition;
+  scale?: number;
+  offsetX?: number;
+  offsetY?: number;
+  flipX?: boolean;
+  opacity?: number;
+  layer?: number;
+}
+
+export interface SceneVisual {
+  mode: SceneVisualMode;
+  backgroundAsset?: string;
+  illustrationAsset?: string;
+  characters?: SceneCharacter[];
+  props?: SceneProp[];
+  overlay?: SceneOverlay;
+  transition?: SceneTransition;
+  focalPoint?: {
+    x: number;
+    y: number;
+  };
+  alt?: string;
+  scenePreset?: string;
+  speakerFocus?: boolean;
 }
 
 export interface GameCondition {
@@ -131,8 +199,10 @@ export interface GameEvent {
   title: string;
   location?: string;
   time?: string;
-  backgroundAsset: string;
+  backgroundAsset?: string;
   characterAssets?: CharacterAssetState[];
+  visual?: SceneVisual;
+  scenePreset?: string;
   narration?: string[];
   speaker?: string;
   dialogue?: string;
@@ -147,6 +217,7 @@ export interface Ending {
   subtitle: string;
   priority: number;
   condition?: GameCondition;
+  imageAsset?: string;
   summary: string[];
   closingLine: string;
 }

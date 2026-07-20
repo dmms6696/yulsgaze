@@ -6,6 +6,7 @@ export const ENDINGS: Ending[] = [
     title: "북극성을 함께 바라보다",
     subtitle: "좋은 엔딩",
     priority: 100,
+    imageAsset: "endings.polarisTogether",
     condition: {
       statsMin: { sight: 45, care: 40 },
       relationMin: {
@@ -26,6 +27,7 @@ export const ENDINGS: Ending[] = [
     title: "천천히 다시 보기",
     subtitle: "중간 이상 엔딩",
     priority: 80,
+    imageAsset: "endings.slowResee",
     condition: {
       statsMin: { sight: 30, care: 25 },
       relationMax: {
@@ -45,6 +47,7 @@ export const ENDINGS: Ending[] = [
     title: "안전한 방관자",
     subtitle: "방관 엔딩",
     priority: 70,
+    imageAsset: "endings.safeObserver",
     condition: {
       statsMax: { courage: 20 },
       minFlagMatches: {
@@ -64,6 +67,7 @@ export const ENDINGS: Ending[] = [
     title: "성급한 시선",
     subtitle: "나쁜 엔딩",
     priority: 60,
+    imageAsset: "endings.hastyGaze",
     condition: {
       statsMax: { sight: 20 },
       relationMin: {
@@ -85,6 +89,7 @@ export const ENDINGS: Ending[] = [
     title: "늦었지만 남은 마음",
     subtitle: "이도해 중심 여운 엔딩",
     priority: 50,
+    imageAsset: "endings.lateHeart",
     condition: {
       statsMin: { sight: 25 },
       relationMin: {
@@ -105,6 +110,7 @@ export const ENDINGS: Ending[] = [
     title: "아직 이름 붙이지 못한 시선",
     subtitle: "기본 엔딩",
     priority: 0,
+    imageAsset: "endings.defaultGaze",
     summary: [
       "당신의 선택들은 한 방향으로 완전히 모이지 않았다.",
       "때로는 다가갔고, 때로는 물러났으며, 때로는 늦게 알아차렸다.",

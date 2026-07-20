@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
 import { ACT_QUESTIONS, ACT_TITLES } from "../data/gameMeta";
-import { resolveAssetPath } from "../data/assetManifest";
 import { getEventProgress } from "../engine/gameEngine";
 import type { ChoiceResolution, GameEvent, GameState } from "../types/game";
 import type { ChoiceView } from "../engine/gameEngine";
 import { ChoiceButton } from "./ChoiceButton";
 import { ResultNotice } from "./ResultNotice";
+import { SceneVisual } from "./SceneVisual";
 
 interface StoryPanelProps {
   state: GameState;
@@ -18,27 +17,9 @@ interface StoryPanelProps {
 }
 
 export function StoryPanel({ event, warning, choiceViews, pendingResolution, onChoice, onContinue }: StoryPanelProps) {
-  const assetPath = resolveAssetPath(event.backgroundAsset);
-  const [imageFailed, setImageFailed] = useState(false);
-
-  useEffect(() => {
-    setImageFailed(false);
-  }, [event.backgroundAsset]);
-
   return (
     <section className="story-panel fade-in">
-      <div className="scene-visual">
-        {assetPath && !imageFailed ? (
-          <img src={assetPath} alt={`${event.title} 장면`} onError={() => setImageFailed(true)} />
-        ) : (
-          <div className="asset-placeholder">
-            <p className="placeholder-kicker">이미지 슬롯</p>
-            <h2>{event.title}</h2>
-            <p>{event.backgroundAsset}</p>
-            <span>추후 장면 이미지 삽입 예정</span>
-          </div>
-        )}
-      </div>
+      <SceneVisual event={event} />
 
       <div className="story-card">
         {warning ? <p className="warning-banner">{warning}</p> : null}

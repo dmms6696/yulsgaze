@@ -1,0 +1,190 @@
+# Asset Audit
+
+- Manifest keys: 95
+- Used keys in source: 53
+- Missing manifest entries: 0
+- Used keys with missing files: 53
+
+## Used Asset Keys
+
+- `actTransitions.act1` - ok - src/data/scenePresets.ts:144
+- `actTransitions.act2` - ok - src/data/scenePresets.ts:154
+- `actTransitions.act3` - ok - src/data/scenePresets.ts:164
+- `actTransitions.act4` - ok - src/data/scenePresets.ts:174
+- `backgrounds.act1Default` - ok - src/data/scenePresets.ts:145
+- `backgrounds.act2Default` - ok - src/data/scenePresets.ts:155
+- `backgrounds.act3Default` - ok - src/data/scenePresets.ts:165
+- `backgrounds.act4Default` - ok - src/data/scenePresets.ts:175
+- `backgrounds.catFarewell` - ok - src/data/events/act4.ts:12 - EVENT_12
+- `backgrounds.classroomFirstDay` - ok - src/data/events/act1.ts:11 - EVENT_01
+- `backgrounds.cloudyClassroom` - ok - src/data/events/act1.ts:68 - EVENT_02
+- `backgrounds.columbarium` - ok - src/data/events/act4.ts:66 - EVENT_13
+- `backgrounds.commonDefault` - ok - src/engine/visualEngine.ts:44
+- `backgrounds.cornerStore` - ok - src/data/events/act2.ts:154 - EVENT_05
+- `backgrounds.missingPosterStreet` - ok - src/data/events/act4.ts:121 - EVENT_14
+- `backgrounds.nurseRoom` - ok - src/data/events/act3.ts:247 - EVENT_10
+- `backgrounds.polarisEnding` - ok - src/components/EndingScreen.tsx:28
+- `backgrounds.rainyRoad` - ok - src/data/events/act2.ts:11 - EVENT_03
+- `backgrounds.rooftopSky` - ok - src/data/events/act2.ts:65 - EVENT_04
+- `backgrounds.schoolHallway` - ok - src/data/events/act2.ts:121 - EVENT_04B_DOHYE_NOTE
+- `backgrounds.starNight` - ok - src/data/events/act4.ts:175 - EVENT_15
+- `characters.classmates.group` - ok - src/data/events/act3.ts:304 - EVENT_11
+- `characters.classmates.whisper` - ok - src/data/events/act1.ts:13 - EVENT_01
+- `characters.dohye.rooftop` - ok - src/data/events/act2.ts:67 - EVENT_04
+- `characters.dohye.sad` - ok - src/data/events/act2.ts:13 - EVENT_03
+- `characters.donghwi.loud` - ok - src/data/events/act3.ts:13 - EVENT_06
+- `characters.jimin.guarded` - ok - src/data/events/act3.ts:14 - EVENT_06
+- `characters.jimin.honest` - ok - src/data/events/act3.ts:138 - EVENT_08
+- `characters.jinuk.angry` - ok - src/data/events/act3.ts:194 - EVENT_09
+- `characters.jinuk.friendly` - ok - src/data/events/act2.ts:156 - EVENT_05
+- `characters.jinuk.injured` - ok - src/data/events/act3.ts:249 - EVENT_10
+- `characters.minwoo.brittle` - ok - src/data/events/act3.ts:67 - EVENT_07
+- `characters.yul.angry` - ok - src/data/events/act3.ts:195 - EVENT_09
+- `characters.yul.anxious` - ok - src/data/events/act1.ts:70 - EVENT_02
+- `characters.yul.growth` - ok - src/data/events/act4.ts:177 - EVENT_15
+- `characters.yul.neutral` - ok - src/data/events/act2.ts:68 - EVENT_04
+- `characters.yul.softened` - ok - src/data/events/act4.ts:14 - EVENT_12
+- `endings.defaultGaze` - ok - src/data/endings.ts:113
+- `endings.hastyGaze` - ok - src/data/endings.ts:70
+- `endings.lateHeart` - ok - src/data/endings.ts:92
+- `endings.polarisTogether` - ok - src/data/endings.ts:9
+- `endings.safeObserver` - ok - src/data/endings.ts:50
+- `endings.slowResee` - ok - src/data/endings.ts:30
+- `illustrations.catFarewell` - ok - src/data/scenePresets.ts:88
+- `illustrations.columbariumTalk` - ok - src/data/scenePresets.ts:96
+- `illustrations.polarisPromise` - ok - src/data/scenePresets.ts:117
+- `props.cast` - ok - src/data/scenePresets.ts:81
+- `props.cat` - ok - src/data/scenePresets.ts:89
+- `props.missingPoster` - ok - src/data/scenePresets.ts:103
+- `props.polaris` - ok - src/data/scenePresets.ts:110
+- `props.tunaCan` - ok - src/data/scenePresets.ts:74
+- `props.umbrella` - ok - src/data/scenePresets.ts:55
+- `title.main` - ok - src/data/scenePresets.ts:32
+
+## Missing Manifest Entries
+
+- None.
+
+## Used Keys With Missing Files
+
+- `actTransitions.act1` -> `public/assets/act-transitions/act-1-rumor.webp`
+- `actTransitions.act2` -> `public/assets/act-transitions/act-2-hidden-reasons.webp`
+- `actTransitions.act3` -> `public/assets/act-transitions/act-3-conflict.webp`
+- `actTransitions.act4` -> `public/assets/act-transitions/act-4-polaris.webp`
+- `backgrounds.act1Default` -> `public/assets/backgrounds/act-1-default.webp`
+- `backgrounds.act2Default` -> `public/assets/backgrounds/act-2-default.webp`
+- `backgrounds.act3Default` -> `public/assets/backgrounds/act-3-default.webp`
+- `backgrounds.act4Default` -> `public/assets/backgrounds/act-4-default.webp`
+- `backgrounds.catFarewell` -> `public/assets/backgrounds/cat-farewell.webp`
+- `backgrounds.classroomFirstDay` -> `public/assets/backgrounds/classroom-first-day.webp`
+- `backgrounds.cloudyClassroom` -> `public/assets/backgrounds/cloudy-classroom.webp`
+- `backgrounds.columbarium` -> `public/assets/backgrounds/columbarium.webp`
+- `backgrounds.commonDefault` -> `public/assets/backgrounds/common-default.webp`
+- `backgrounds.cornerStore` -> `public/assets/backgrounds/corner-store.webp`
+- `backgrounds.missingPosterStreet` -> `public/assets/backgrounds/missing-poster-street.webp`
+- `backgrounds.nurseRoom` -> `public/assets/backgrounds/nurse-room.webp`
+- `backgrounds.polarisEnding` -> `public/assets/backgrounds/polaris-ending.webp`
+- `backgrounds.rainyRoad` -> `public/assets/backgrounds/rainy-road.webp`
+- `backgrounds.rooftopSky` -> `public/assets/backgrounds/rooftop-sky.webp`
+- `backgrounds.schoolHallway` -> `public/assets/backgrounds/school-hallway.webp`
+- `backgrounds.starNight` -> `public/assets/backgrounds/star-night.webp`
+- `characters.classmates.group` -> `public/assets/characters/classmates-group.webp`
+- `characters.classmates.whisper` -> `public/assets/characters/classmates-whisper.webp`
+- `characters.dohye.rooftop` -> `public/assets/characters/dohye-rooftop.webp`
+- `characters.dohye.sad` -> `public/assets/characters/dohye-sad.webp`
+- `characters.donghwi.loud` -> `public/assets/characters/donghwi-loud.webp`
+- `characters.jimin.guarded` -> `public/assets/characters/jimin-guarded.webp`
+- `characters.jimin.honest` -> `public/assets/characters/jimin-honest.webp`
+- `characters.jinuk.angry` -> `public/assets/characters/jinuk-angry.webp`
+- `characters.jinuk.friendly` -> `public/assets/characters/jinuk-friendly.webp`
+- `characters.jinuk.injured` -> `public/assets/characters/jinuk-injured.webp`
+- `characters.minwoo.brittle` -> `public/assets/characters/minwoo-brittle.webp`
+- `characters.yul.angry` -> `public/assets/characters/yul-angry.webp`
+- `characters.yul.anxious` -> `public/assets/characters/yul-anxious.webp`
+- `characters.yul.growth` -> `public/assets/characters/yul-growth.webp`
+- `characters.yul.neutral` -> `public/assets/characters/yul-neutral.webp`
+- `characters.yul.softened` -> `public/assets/characters/yul-softened.webp`
+- `endings.defaultGaze` -> `public/assets/endings/default-gaze.webp`
+- `endings.hastyGaze` -> `public/assets/endings/hasty-gaze.webp`
+- `endings.lateHeart` -> `public/assets/endings/late-heart.webp`
+- `endings.polarisTogether` -> `public/assets/endings/polaris-together.webp`
+- `endings.safeObserver` -> `public/assets/endings/safe-observer.webp`
+- `endings.slowResee` -> `public/assets/endings/slow-resee.webp`
+- `illustrations.catFarewell` -> `public/assets/illustrations/cat-farewell.webp`
+- `illustrations.columbariumTalk` -> `public/assets/illustrations/columbarium-talk.webp`
+- `illustrations.polarisPromise` -> `public/assets/illustrations/polaris-promise.webp`
+- `props.cast` -> `public/assets/props/cast.webp`
+- `props.cat` -> `public/assets/props/cat.webp`
+- `props.missingPoster` -> `public/assets/props/missing-poster.webp`
+- `props.polaris` -> `public/assets/props/polaris.webp`
+- `props.tunaCan` -> `public/assets/props/tuna-can.webp`
+- `props.umbrella` -> `public/assets/props/umbrella.webp`
+- `title.main` -> `public/assets/title/yul-gaze-main.webp`
+
+## Event Usage
+
+- src/components/EndingScreen.tsx: backgrounds.polarisEnding
+- src/data/endings.ts: endings.defaultGaze, endings.hastyGaze, endings.lateHeart, endings.polarisTogether, endings.safeObserver, endings.slowResee
+- EVENT_01: backgrounds.classroomFirstDay, characters.classmates.whisper
+- EVENT_02: backgrounds.cloudyClassroom, characters.yul.anxious
+- EVENT_03: backgrounds.rainyRoad, characters.dohye.sad
+- EVENT_04: backgrounds.rooftopSky, characters.dohye.rooftop, characters.yul.neutral
+- EVENT_04B_DOHYE_NOTE: backgrounds.schoolHallway, characters.yul.neutral
+- EVENT_05: backgrounds.cornerStore, characters.jinuk.friendly
+- EVENT_06: backgrounds.cloudyClassroom, characters.donghwi.loud, characters.jimin.guarded
+- EVENT_07: backgrounds.classroomFirstDay, characters.donghwi.loud, characters.minwoo.brittle
+- EVENT_08: backgrounds.rooftopSky, characters.jimin.honest, characters.yul.neutral
+- EVENT_09: backgrounds.schoolHallway, characters.jinuk.angry, characters.yul.angry
+- EVENT_10: backgrounds.nurseRoom, characters.jinuk.injured, characters.yul.anxious
+- EVENT_11: backgrounds.cloudyClassroom, characters.classmates.group, characters.yul.anxious
+- EVENT_12: backgrounds.catFarewell, characters.dohye.sad, characters.yul.softened
+- EVENT_13: backgrounds.columbarium, characters.yul.softened
+- EVENT_14: backgrounds.missingPosterStreet, characters.yul.anxious
+- EVENT_15: backgrounds.polarisEnding, backgrounds.starNight, characters.yul.growth
+- src/data/scenePresets.ts: actTransitions.act1, actTransitions.act2, actTransitions.act3, actTransitions.act4, backgrounds.act1Default, backgrounds.act2Default, backgrounds.act3Default, backgrounds.act4Default, backgrounds.catFarewell, backgrounds.classroomFirstDay, backgrounds.cloudyClassroom, backgrounds.columbarium, backgrounds.cornerStore, backgrounds.missingPosterStreet, backgrounds.nurseRoom, backgrounds.polarisEnding, backgrounds.rainyRoad, backgrounds.rooftopSky, backgrounds.schoolHallway, backgrounds.starNight, illustrations.catFarewell, illustrations.columbariumTalk, illustrations.polarisPromise, props.cast, props.cat, props.missingPoster, props.polaris, props.tunaCan, props.umbrella, title.main
+- src/engine/visualEngine.ts: backgrounds.commonDefault
+
+## Manifest Keys Not Used Directly Yet
+
+- `backgrounds.dohyeHouseStreet`
+- `backgrounds.hospital`
+- `backgrounds.hospitalStreet`
+- `backgrounds.neglectedHouse`
+- `backgrounds.nightAlley`
+- `backgrounds.playground`
+- `backgrounds.quietCatPlace`
+- `backgrounds.sceneDefault`
+- `backgrounds.wayHome`
+- `characters.classmates.neutral`
+- `characters.classmates.silhouette`
+- `characters.dohye.neutral`
+- `characters.dohye.silhouette`
+- `characters.dohye.smile`
+- `characters.donghwi.casual`
+- `characters.donghwi.neutral`
+- `characters.donghwi.silhouette`
+- `characters.jimin.neutral`
+- `characters.jimin.reconciled`
+- `characters.jimin.silhouette`
+- `characters.jinuk.honest`
+- `characters.jinuk.neutral`
+- `characters.jinuk.silhouette`
+- `characters.minwoo.neutral`
+- `characters.minwoo.proud`
+- `characters.minwoo.silhouette`
+- `characters.yul.silhouette`
+- `illustrations.hallwayFight`
+- `illustrations.missingPosters`
+- `illustrations.rainyUmbrella`
+- `illustrations.rooftopSilence`
+- `illustrations.rumorCircle`
+- `illustrations.secretNotebook`
+- `illustrations.yulLookingDown`
+- `props.luxuryBag`
+- `props.note`
+- `props.soccerBall`
+- `props.storyNotebook`
+- `title.classroomWindow`
+- `ui.characterSilhouette`
+- `ui.imageMissing`
+- `ui.scenePlaceholder`

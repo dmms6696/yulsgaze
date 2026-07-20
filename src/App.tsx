@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { ActTransitionScreen } from "./components/ActTransitionScreen";
 import { ConfirmModal } from "./components/ConfirmModal";
 import { EndingScreen } from "./components/EndingScreen";
 import { GameLayout } from "./components/GameLayout";
@@ -6,7 +7,8 @@ import { HelpModal } from "./components/HelpModal";
 import { StartScreen } from "./components/StartScreen";
 import { getCurrentEvent, choose, finalizeIfEndingCheck, getChoiceViews } from "./engine/gameEngine";
 import { clearSave, createInitialState, hasSavedGame, loadGame, saveGame } from "./engine/saveEngine";
-import type { ChoiceResolution, GameEvent, GameState } from "./types/game";
+import { shouldShowActTransition } from "./engine/visualEngine";
+import type { ActNumber, ChoiceResolution, GameEvent, GameState } from "./types/game";
 
 export default function App() {
   const [gameState, setGameState] = useState<GameState | null>(null);
@@ -17,6 +19,7 @@ export default function App() {
   const [confirmResetOpen, setConfirmResetOpen] = useState(false);
   const [pendingResolution, setPendingResolution] = useState<ChoiceResolution | null>(null);
   const [pendingEvent, setPendingEvent] = useState<GameEvent | null>(null);
+  const [dismissedActIntros, setDismissedActIntros] = useState<Partial<Record<ActNumber, boolean>>>({});
 
   useEffect(() => {
     setSavedExists(hasSavedGame());
@@ -52,6 +55,7 @@ export default function App() {
     setMessage("");
     setPendingEvent(null);
     setPendingResolution(null);
+    setDismissedActIntros({});
   }
 
   function continueGame() {
@@ -65,6 +69,7 @@ export default function App() {
     setMessage("");
     setPendingEvent(null);
     setPendingResolution(null);
+    setDismissedActIntros({});
   }
 
   function requestReset() {
@@ -79,6 +84,7 @@ export default function App() {
     setPendingEvent(null);
     setPendingResolution(null);
     setConfirmResetOpen(false);
+    setDismissedActIntros({});
   }
 
   function handleChoice(choiceId: string) {
@@ -162,6 +168,15 @@ export default function App() {
         onContinue={continueGame}
         onHelp={() => setHelpOpen(true)}
         onReset={requestReset}
+      />
+    );
+  }
+
+  if (!pendingResolution && shouldShowActTransition(displayEvent, dismissedActIntros)) {
+    return (
+      <ActTransitionScreen
+        act={displayEvent.act}
+        onContinue={() => setDismissedActIntros((dismissed) => ({ ...dismissed, [displayEvent.act]: true }))}
       />
     );
   }

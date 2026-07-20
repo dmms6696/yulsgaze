@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { GAME_META } from "../data/gameMeta";
+import { START_SCREEN_VISUAL } from "../data/scenePresets";
+import { VisualAssetSlot } from "./VisualAssetSlot";
 
 interface StartScreenProps {
   message?: string;
@@ -17,6 +19,16 @@ export function StartScreen({ message, hasSave, onStart, onContinue, onHelp, onR
     <main className="start-screen">
       <section className="start-hero">
         <div className="start-copy">
+          <VisualAssetSlot
+            assetKey={START_SCREEN_VISUAL.heroAsset}
+            fallbackAssetKey={START_SCREEN_VISUAL.backgroundAsset}
+            title={GAME_META.title}
+            kicker="시작 화면 이미지 슬롯"
+            alt={START_SCREEN_VISUAL.alt}
+            className="start-hero-image"
+            overlay={START_SCREEN_VISUAL.overlay}
+            focalPoint={START_SCREEN_VISUAL.focalPoint}
+          />
           <p className="eyebrow">중학교 독서캠프 선택형 스토리</p>
           <h1>{GAME_META.title}</h1>
           <p className="subtitle">{GAME_META.subtitle}</p>

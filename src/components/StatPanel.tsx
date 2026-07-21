@@ -37,14 +37,14 @@ export function StatPanel({ state, historyOpen, onHelp, onRestart, onToggleHisto
           <strong>{progress}% 진행</strong>
         </section>
 
-        <section className="panel-section">
+        <section className="panel-section stats-section">
           <h2>플레이어 스탯</h2>
           {STAT_DEFINITIONS.map((stat) => (
             <StatBar key={stat.key} label={stat.label} value={state.stats[stat.key]} description={stat.description} />
           ))}
         </section>
 
-        <section className="panel-section">
+        <section className="panel-section relations-section">
           <h2>주요 인물 관계</h2>
           <div className="relations-grid">
             {CHARACTERS.map((character) => (
@@ -58,19 +58,19 @@ export function StatPanel({ state, historyOpen, onHelp, onRestart, onToggleHisto
           </div>
         </section>
 
-        <section className="panel-section">
+        <section className="panel-section flags-section">
           <h2>기억된 선택</h2>
           <FlagList flags={state.flags} />
         </section>
 
-        <section className="panel-section">
+        <section className="panel-section history-section">
           <div className="section-row">
             <h2>최근 선택 기록</h2>
             <button className="text-button" type="button" onClick={onToggleHistory}>
-              {historyOpen ? "접기" : "전체 보기"}
+              {historyOpen ? "접기" : "더 보기"}
             </button>
           </div>
-          <HistoryPanel history={state.history} full={historyOpen} />
+          <HistoryPanel history={state.history} full={historyOpen} limit={2} maxItems={historyOpen ? 3 : undefined} />
         </section>
 
         <div className="panel-actions">

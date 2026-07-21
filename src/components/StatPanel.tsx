@@ -70,7 +70,7 @@ export function StatPanel({ state, historyOpen, onHelp, onRestart, onToggleHisto
               {historyOpen ? "접기" : "더 보기"}
             </button>
           </div>
-          <HistoryPanel history={state.history} full={historyOpen} limit={2} maxItems={historyOpen ? 3 : undefined} />
+          <HistoryPanel history={state.history} full={historyOpen} limit={2} />
         </section>
 
         <div className="panel-actions">

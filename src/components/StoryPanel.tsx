@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { ACT_QUESTIONS, ACT_TITLES } from "../data/gameMeta";
 import { getEventProgress } from "../engine/gameEngine";
 import type { ChoiceResolution, GameEvent, GameState } from "../types/game";
@@ -17,11 +18,31 @@ interface StoryPanelProps {
 }
 
 export function StoryPanel({ event, warning, choiceViews, pendingResolution, onChoice, onContinue }: StoryPanelProps) {
+  const storyCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const storyCard = storyCardRef.current;
+    if (!storyCard) {
+      return;
+    }
+    storyCard.scrollTo({ top: 0, behavior: "auto" });
+  }, [event.id]);
+
+  useEffect(() => {
+    const storyCard = storyCardRef.current;
+    if (!storyCard || !pendingResolution) {
+      return;
+    }
+    requestAnimationFrame(() => {
+      storyCard.scrollTo({ top: storyCard.scrollHeight, behavior: "auto" });
+    });
+  }, [pendingResolution]);
+
   return (
     <section className="story-panel fade-in">
       <SceneVisual event={event} />
 
-      <div className="story-card">
+      <div className="story-card" ref={storyCardRef}>
         {warning ? <p className="warning-banner">{warning}</p> : null}
         <div className="event-meta">
           <span>{ACT_TITLES[event.act]}</span>

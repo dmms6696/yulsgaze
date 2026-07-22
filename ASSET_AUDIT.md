@@ -4,7 +4,7 @@
 - Used keys in source: 80
 - Missing manifest entries: 0
 - Used keys with missing files: 0
-- Used keys waiting for future files: 77
+- Used keys waiting for future files: 57
 
 ## Used Asset Keys
 
@@ -107,34 +107,14 @@
 - `backgrounds.act2Default`
 - `backgrounds.act3Default`
 - `backgrounds.act4Default`
-- `backgrounds.afterSchoolRoad`
-- `backgrounds.catAlleyNight`
 - `backgrounds.catFarewell`
-- `backgrounds.classroomAfterExam`
-- `backgrounds.classroomFight`
 - `backgrounds.classroomFirstDay`
-- `backgrounds.cloudyClassroom`
 - `backgrounds.columbarium`
 - `backgrounds.commonDefault`
 - `backgrounds.cornerStore`
-- `backgrounds.cornerStoreNight`
-- `backgrounds.counselingRoom`
-- `backgrounds.crowdedClassroom`
-- `backgrounds.darkRoomWindow`
-- `backgrounds.hospitalExit`
-- `backgrounds.missingPosterStreet`
-- `backgrounds.nurseRoom`
 - `backgrounds.polarisEnding`
-- `backgrounds.quietRooftopNight`
 - `backgrounds.rainyRoad`
-- `backgrounds.rooftopSky`
-- `backgrounds.rooftopStairs`
-- `backgrounds.rooftopSunset`
 - `backgrounds.schoolHallway`
-- `backgrounds.schoolHallwayConflict`
-- `backgrounds.schoolyardFootball`
-- `backgrounds.schoolyardTree`
-- `backgrounds.trashHouse`
 - `endings.defaultGaze`
 - `endings.hastyGaze`
 - `endings.lateHeart`

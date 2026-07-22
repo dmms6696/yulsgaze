@@ -179,6 +179,15 @@ p {
   font-weight: 800;
 }
 
+.creator-credit {
+  max-width: 780px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+  font-weight: 800;
+}
+
 .intro,
 .content-notice {
   max-width: 720px;
@@ -1054,6 +1063,12 @@ blockquote {
     line-height: 1.45;
   }
 
+  .start-copy .creator-credit {
+    color: #d9caa8;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
   .start-support-grid {
     z-index: 3;
     grid-area: 1 / 1;
@@ -1501,6 +1516,11 @@ blockquote {
   .start-copy .core-message {
     font-size: 11px;
     line-height: 1.3;
+  }
+
+  .start-copy .creator-credit {
+    font-size: 8.5px;
+    line-height: 1.25;
   }
 
   .start-support-grid {

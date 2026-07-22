@@ -30,10 +30,11 @@ export function StartScreen({ message, hasSave, onStart, onContinue, onHelp, onR
             focalPoint={START_SCREEN_VISUAL.focalPoint}
           />
           <div className="start-text-block">
-            <p className="eyebrow">중학교 독서캠프 선택형 스토리</p>
+            <p className="eyebrow">2026학년도 동명중학교 여름방학 새빛 독서캠프 선택형 스토리</p>
             <h1>{GAME_META.title}</h1>
             <p className="subtitle">{GAME_META.subtitle}</p>
             <p className="core-message">{GAME_META.coreMessage}</p>
+            <p className="creator-credit">{GAME_META.creatorCredit}</p>
           </div>
           <div className="start-support-grid">
             <p className="intro">{GAME_META.intro}</p>

@@ -1,136 +1,202 @@
-import type { ActNumber, CharacterId } from "../types/game";
+import type { ActNumber, VisualCharacterId } from "../types/game";
 
+type AssetLeaf = string | undefined;
 type AssetTree = {
-  readonly [key: string]: string | AssetTree;
+  readonly [key: string]: AssetLeaf | AssetTree;
 };
 
 const assetPath = (path: string) => `./assets/${path}`;
+const missingAsset = (): undefined => undefined;
 
 export const ASSETS = {
   title: {
     main: assetPath("title/yul-gaze-start-classroom.png"),
-    classroomWindow: assetPath("title/classroom-window.webp"),
+    classroomWindow: missingAsset(),
   },
   actTransitions: {
-    act1: assetPath("act-transitions/act-1-rumor.webp"),
-    act2: assetPath("act-transitions/act-2-hidden-reasons.webp"),
-    act3: assetPath("act-transitions/act-3-conflict.webp"),
-    act4: assetPath("act-transitions/act-4-polaris.webp"),
+    act1: missingAsset(),
+    act2: missingAsset(),
+    act3: missingAsset(),
+    act4: missingAsset(),
   },
   backgrounds: {
-    commonDefault: assetPath("backgrounds/common-default.webp"),
-    sceneDefault: assetPath("backgrounds/scene-default.webp"),
-    act1Default: assetPath("backgrounds/act-1-default.webp"),
-    act2Default: assetPath("backgrounds/act-2-default.webp"),
-    act3Default: assetPath("backgrounds/act-3-default.webp"),
-    act4Default: assetPath("backgrounds/act-4-default.webp"),
-    classroomFirstDay: assetPath("backgrounds/classroom-first-day.webp"),
-    cloudyClassroom: assetPath("backgrounds/cloudy-classroom.webp"),
-    rainyRoad: assetPath("backgrounds/rainy-road.webp"),
-    schoolHallway: assetPath("backgrounds/school-hallway.webp"),
-    rooftopSky: assetPath("backgrounds/rooftop-sky.webp"),
-    playground: assetPath("backgrounds/playground.webp"),
-    nightAlley: assetPath("backgrounds/night-alley.webp"),
-    cornerStore: assetPath("backgrounds/corner-store.webp"),
-    nurseRoom: assetPath("backgrounds/nurse-room.webp"),
-    hospital: assetPath("backgrounds/hospital.webp"),
-    hospitalStreet: assetPath("backgrounds/hospital-street.webp"),
-    wayHome: assetPath("backgrounds/way-home.webp"),
-    quietCatPlace: assetPath("backgrounds/quiet-cat-place.webp"),
-    catFarewell: assetPath("backgrounds/cat-farewell.webp"),
-    columbarium: assetPath("backgrounds/columbarium.webp"),
-    dohyeHouseStreet: assetPath("backgrounds/dohye-house-street.webp"),
-    neglectedHouse: assetPath("backgrounds/neglected-house.webp"),
-    missingPosterStreet: assetPath("backgrounds/missing-poster-street.webp"),
+    commonDefault: missingAsset(),
+    sceneDefault: missingAsset(),
+    act1Default: missingAsset(),
+    act2Default: missingAsset(),
+    act3Default: missingAsset(),
+    act4Default: missingAsset(),
+    schoolyardTree: missingAsset(),
+    rooftopSky: missingAsset(),
+    rooftopSunset: missingAsset(),
+    schoolyardFootball: missingAsset(),
+    catAlleyNight: missingAsset(),
+    rooftopStairs: missingAsset(),
+    cornerStoreNight: missingAsset(),
+    cloudyClassroom: missingAsset(),
+    classroomFight: missingAsset(),
+    schoolHallwayConflict: missingAsset(),
+    nurseRoom: missingAsset(),
+    hospitalExit: missingAsset(),
+    afterSchoolRoad: missingAsset(),
+    crowdedClassroom: missingAsset(),
+    classroomAfterExam: missingAsset(),
+    quietRooftopNight: missingAsset(),
+    darkRoomWindow: missingAsset(),
+    counselingRoom: missingAsset(),
+    trashHouse: missingAsset(),
+    missingPosterStreet: missingAsset(),
+    starNightSchoolyard: assetPath("backgrounds/star-night.png"),
+    classroomFirstDay: missingAsset(),
+    rainyRoad: missingAsset(),
+    schoolHallway: missingAsset(),
+    playground: missingAsset(),
+    nightAlley: missingAsset(),
+    cornerStore: missingAsset(),
+    hospital: missingAsset(),
+    hospitalStreet: missingAsset(),
+    wayHome: missingAsset(),
+    quietCatPlace: missingAsset(),
+    catFarewell: missingAsset(),
+    columbarium: missingAsset(),
+    dohyeHouseStreet: missingAsset(),
+    neglectedHouse: missingAsset(),
     starNight: assetPath("backgrounds/star-night.png"),
-    polarisEnding: assetPath("backgrounds/polaris-ending.webp"),
+    polarisEnding: missingAsset(),
   },
   illustrations: {
-    rumorCircle: assetPath("illustrations/rumor-circle.webp"),
-    yulLookingDown: assetPath("illustrations/yul-looking-down.webp"),
-    rainyUmbrella: assetPath("illustrations/rainy-umbrella.webp"),
-    rooftopSilence: assetPath("illustrations/rooftop-silence.webp"),
-    secretNotebook: assetPath("illustrations/secret-notebook.webp"),
-    hallwayFight: assetPath("illustrations/hallway-fight.webp"),
-    catFarewell: assetPath("illustrations/cat-farewell.webp"),
-    columbariumTalk: assetPath("illustrations/columbarium-talk.webp"),
-    missingPosters: assetPath("illustrations/missing-posters.webp"),
-    polarisPromise: assetPath("illustrations/polaris-promise.webp"),
+    dohyeDeadCat: missingAsset(),
+    catFarewell: missingAsset(),
+    yulChainRope: missingAsset(),
+    robberyMemory: missingAsset(),
+    dohyeHospital: missingAsset(),
+    trashHouseVisit: missingAsset(),
+    missingPosterWalk: missingAsset(),
+    yulPolarisGrowth: missingAsset(),
+    rumorCircle: missingAsset(),
+    yulLookingDown: missingAsset(),
+    rainyUmbrella: missingAsset(),
+    rooftopSilence: missingAsset(),
+    secretNotebook: missingAsset(),
+    hallwayFight: missingAsset(),
+    columbariumTalk: missingAsset(),
+    missingPosters: missingAsset(),
+    polarisPromise: missingAsset(),
   },
   characters: {
     yul: {
-      neutral: assetPath("characters/yul-neutral.webp"),
-      anxious: assetPath("characters/yul-anxious.webp"),
-      angry: assetPath("characters/yul-angry.webp"),
-      softened: assetPath("characters/yul-softened.webp"),
-      growth: assetPath("characters/yul-growth.webp"),
-      silhouette: assetPath("characters/yul-silhouette.webp"),
+      neutral: missingAsset(),
+      anxious: missingAsset(),
+      angry: missingAsset(),
+      softened: missingAsset(),
+      growth: missingAsset(),
+      silhouette: missingAsset(),
     },
     dohye: {
-      neutral: assetPath("characters/dohye-neutral.webp"),
-      smile: assetPath("characters/dohye-smile.webp"),
-      rooftop: assetPath("characters/dohye-rooftop.webp"),
-      sad: assetPath("characters/dohye-sad.webp"),
-      silhouette: assetPath("characters/dohye-silhouette.webp"),
+      neutral: missingAsset(),
+      anxious: missingAsset(),
+      angry: missingAsset(),
+      softened: missingAsset(),
+      growth: missingAsset(),
+      silhouette: missingAsset(),
     },
     jinuk: {
-      neutral: assetPath("characters/jinuk-neutral.webp"),
-      friendly: assetPath("characters/jinuk-friendly.webp"),
-      angry: assetPath("characters/jinuk-angry.webp"),
-      injured: assetPath("characters/jinuk-injured.webp"),
-      honest: assetPath("characters/jinuk-honest.webp"),
-      silhouette: assetPath("characters/jinuk-silhouette.webp"),
+      neutral: missingAsset(),
+      anxious: missingAsset(),
+      angry: missingAsset(),
+      softened: missingAsset(),
+      growth: missingAsset(),
+      silhouette: missingAsset(),
     },
     minwoo: {
-      neutral: assetPath("characters/minwoo-neutral.webp"),
-      proud: assetPath("characters/minwoo-proud.webp"),
-      brittle: assetPath("characters/minwoo-brittle.webp"),
-      silhouette: assetPath("characters/minwoo-silhouette.webp"),
+      neutral: missingAsset(),
+      anxious: missingAsset(),
+      angry: missingAsset(),
+      softened: missingAsset(),
+      growth: missingAsset(),
+      silhouette: missingAsset(),
     },
     donghwi: {
-      neutral: assetPath("characters/donghwi-neutral.webp"),
-      casual: assetPath("characters/donghwi-casual.webp"),
-      loud: assetPath("characters/donghwi-loud.webp"),
-      silhouette: assetPath("characters/donghwi-silhouette.webp"),
+      neutral: missingAsset(),
+      anxious: missingAsset(),
+      angry: missingAsset(),
+      softened: missingAsset(),
+      growth: missingAsset(),
+      silhouette: missingAsset(),
     },
     jimin: {
-      neutral: assetPath("characters/jimin-neutral.webp"),
-      guarded: assetPath("characters/jimin-guarded.webp"),
-      honest: assetPath("characters/jimin-honest.webp"),
-      reconciled: assetPath("characters/jimin-reconciled.webp"),
-      silhouette: assetPath("characters/jimin-silhouette.webp"),
+      neutral: missingAsset(),
+      anxious: missingAsset(),
+      angry: missingAsset(),
+      softened: missingAsset(),
+      growth: missingAsset(),
+      silhouette: missingAsset(),
     },
     classmates: {
-      neutral: assetPath("characters/classmates-neutral.webp"),
-      group: assetPath("characters/classmates-group.webp"),
-      whisper: assetPath("characters/classmates-whisper.webp"),
-      silhouette: assetPath("characters/classmates-silhouette.webp"),
+      neutral: missingAsset(),
+      anxious: missingAsset(),
+      angry: missingAsset(),
+      softened: missingAsset(),
+      growth: missingAsset(),
+      silhouette: missingAsset(),
+    },
+    yulMother: {
+      neutral: missingAsset(),
+      anxious: missingAsset(),
+      angry: missingAsset(),
+      softened: missingAsset(),
+      growth: missingAsset(),
+      silhouette: missingAsset(),
+    },
+    jinukFather: {
+      neutral: missingAsset(),
+      anxious: missingAsset(),
+      angry: missingAsset(),
+      softened: missingAsset(),
+      growth: missingAsset(),
+      silhouette: missingAsset(),
     },
   },
   props: {
-    soccerBall: assetPath("props/soccer-ball.webp"),
-    tunaCan: assetPath("props/tuna-can.webp"),
-    cat: assetPath("props/cat.webp"),
-    note: assetPath("props/note.webp"),
-    luxuryBag: assetPath("props/luxury-bag.webp"),
-    cast: assetPath("props/cast.webp"),
-    storyNotebook: assetPath("props/story-notebook.webp"),
-    missingPoster: assetPath("props/missing-poster.webp"),
-    polaris: assetPath("props/polaris.webp"),
-    umbrella: assetPath("props/umbrella.webp"),
+    soccerBall: missingAsset(),
+    tunaCan: missingAsset(),
+    cat: missingAsset(),
+    note: missingAsset(),
+    luxuryBag: missingAsset(),
+    cast: missingAsset(),
+    storyNotebook: missingAsset(),
+    missingPoster: missingAsset(),
+    polaris: missingAsset(),
+    umbrella: missingAsset(),
+    waterBottle: missingAsset(),
+    pencil: missingAsset(),
+    tissue: missingAsset(),
+    bag: missingAsset(),
+    teacherDoor: missingAsset(),
+    phone: missingAsset(),
+    icePack: missingAsset(),
+    crutch: missingAsset(),
+    snack: missingAsset(),
+    flowers: missingAsset(),
+    sleeve: missingAsset(),
+    ropeShadow: missingAsset(),
+    chair: missingAsset(),
+    hospitalBed: missingAsset(),
+    windowLight: missingAsset(),
+    flyer: missingAsset(),
   },
   endings: {
-    polarisTogether: assetPath("endings/polaris-together.webp"),
-    slowResee: assetPath("endings/slow-resee.webp"),
-    safeObserver: assetPath("endings/safe-observer.webp"),
-    hastyGaze: assetPath("endings/hasty-gaze.webp"),
-    lateHeart: assetPath("endings/late-heart.webp"),
-    defaultGaze: assetPath("endings/default-gaze.webp"),
+    polarisTogether: missingAsset(),
+    slowResee: missingAsset(),
+    safeObserver: missingAsset(),
+    hastyGaze: missingAsset(),
+    lateHeart: missingAsset(),
+    defaultGaze: missingAsset(),
   },
   ui: {
-    scenePlaceholder: assetPath("ui/scene-placeholder.webp"),
-    characterSilhouette: assetPath("ui/character-silhouette.webp"),
-    imageMissing: assetPath("ui/image-missing.webp"),
+    scenePlaceholder: missingAsset(),
+    characterSilhouette: missingAsset(),
+    imageMissing: missingAsset(),
   },
 } as const satisfies AssetTree;
 
@@ -149,10 +215,10 @@ function normalizeLegacyAssetKey(assetKey: string) {
 
 function lookupAsset(assetKey: string): string | undefined {
   const parts = normalizeLegacyAssetKey(assetKey).split(".");
-  let cursor: string | AssetTree = ASSETS;
+  let cursor: AssetLeaf | AssetTree = ASSETS;
 
   for (const part of parts) {
-    if (typeof cursor === "string") {
+    if (!cursor || typeof cursor === "string") {
       return undefined;
     }
     if (!(part in cursor)) {
@@ -172,14 +238,27 @@ export function resolveAssetPath(assetKey?: string): string | undefined {
 }
 
 export function assetKeyExists(assetKey?: string): boolean {
-  return Boolean(resolveAssetPath(assetKey));
+  if (!assetKey) {
+    return false;
+  }
+  const parts = normalizeLegacyAssetKey(assetKey).split(".");
+  let cursor: AssetLeaf | AssetTree = ASSETS;
+
+  for (const part of parts) {
+    if (!cursor || typeof cursor === "string" || !(part in cursor)) {
+      return false;
+    }
+    cursor = cursor[part];
+  }
+
+  return cursor === undefined || typeof cursor === "string";
 }
 
 export function resolveBackgroundAsset(assetKey?: string, act?: ActNumber): string | undefined {
   return getBackgroundAssetCandidates(assetKey, act)[0];
 }
 
-export function resolveCharacterAsset(characterId: CharacterId, expression = "neutral"): string | undefined {
+export function resolveCharacterAsset(characterId: VisualCharacterId, expression = "neutral"): string | undefined {
   return getCharacterAssetCandidates(characterId, expression)[0];
 }
 
@@ -201,7 +280,7 @@ export function getBackgroundAssetCandidates(assetKey?: string, act?: ActNumber)
   ]);
 }
 
-export function getCharacterAssetCandidates(characterId: CharacterId, expression = "neutral"): string[] {
+export function getCharacterAssetCandidates(characterId: VisualCharacterId, expression = "neutral"): string[] {
   return uniqueResolvedAssetPaths([
     `characters.${characterId}.${expression}`,
     `characters.${characterId}.neutral`,
@@ -221,7 +300,7 @@ export function listManifestAssetKeys(): string[] {
   function walk(node: AssetTree, prefix: string) {
     Object.entries(node).forEach(([key, value]) => {
       const nextKey = prefix ? `${prefix}.${key}` : key;
-      if (typeof value === "string") {
+      if (typeof value === "string" || value === undefined) {
         keys.push(nextKey);
       } else {
         walk(value, nextKey);

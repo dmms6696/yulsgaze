@@ -10,13 +10,14 @@ import { isKnownMissingAsset, markAssetMissing, preloadAssetPaths } from "../eng
 import {
   getAutoCharacterPosition,
   getCharacterLabel,
-  getEventVisual,
+  getChoiceResultVisual,
   shouldDimCharacter,
 } from "../engine/visualEngine";
-import type { CharacterPosition, GameEvent, SceneCharacter, SceneProp } from "../types/game";
+import type { CharacterPosition, GameEvent, SceneCharacter, SceneProp, SceneVisual as SceneVisualData, SceneVisualOverride } from "../types/game";
 
 interface SceneVisualProps {
   event: GameEvent;
+  visualOverride?: SceneVisualOverride;
 }
 
 interface ManagedImageProps {
@@ -137,11 +138,17 @@ function CharacterFallback({ character, event }: { character: SceneCharacter; ev
   );
 }
 
-function renderCharacterLayer(character: SceneCharacter, event: GameEvent, index: number, total: number) {
+function renderCharacterLayer(
+  character: SceneCharacter,
+  event: GameEvent,
+  visual: SceneVisualData,
+  index: number,
+  total: number,
+) {
   const position = character.position ?? getAutoCharacterPosition(index, total);
   const assetCandidates = getCharacterAssetCandidates(character.characterId, character.expression);
   const label = getCharacterLabel(character);
-  const dimmed = shouldDimCharacter(character, event, getEventVisual(event));
+  const dimmed = shouldDimCharacter(character, event, visual);
   const style = getLayerStyle(
     position,
     character.scale ?? 1,
@@ -198,8 +205,8 @@ function renderPropLayer(prop: SceneProp, index: number, total: number) {
   );
 }
 
-export function SceneVisual({ event }: SceneVisualProps) {
-  const visual = useMemo(() => getEventVisual(event), [event]);
+export function SceneVisual({ event, visualOverride }: SceneVisualProps) {
+  const visual = useMemo(() => getChoiceResultVisual(event, visualOverride), [event, visualOverride]);
   const backgroundCandidates = getBackgroundAssetCandidates(visual.backgroundAsset, event.act);
   const illustrationPath = visual.illustrationAsset ? resolveAssetPath(visual.illustrationAsset) : undefined;
   const characters = visual.characters ?? [];
@@ -237,7 +244,7 @@ export function SceneVisual({ event }: SceneVisualProps) {
         <>
           <div className="scene-prop-stage">{props.map((prop, index) => renderPropLayer(prop, index, props.length))}</div>
           <div className="scene-character-stage">
-            {characters.map((character, index) => renderCharacterLayer(character, event, index, characters.length))}
+            {characters.map((character, index) => renderCharacterLayer(character, event, visual, index, characters.length))}
           </div>
         </>
       ) : null}

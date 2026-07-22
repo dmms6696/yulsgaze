@@ -40,7 +40,7 @@ export function StoryPanel({ event, warning, choiceViews, pendingResolution, onC
 
   return (
     <section className="story-panel fade-in">
-      <SceneVisual event={event} />
+      <SceneVisual event={event} visualOverride={pendingResolution?.choice.resultVisual} />
 
       <div className="story-card" ref={storyCardRef}>
         {warning ? <p className="warning-banner">{warning}</p> : null}

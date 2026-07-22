@@ -8,12 +8,24 @@ export const ENDINGS: Ending[] = [
     priority: 100,
     imageAsset: "endings.polarisTogether",
     condition: {
-      statsMin: { sight: 45, care: 40 },
+      statsMin: { sight: 42, care: 40 },
       relationMin: {
-        yul: { trust: 45 },
-        dohye: { trust: 30 },
+        yul: { trust: 48 },
+        dohye: { trust: 34 },
       },
-      requiredFlags: ["reserved_judgment", "stayed_with_pain", "searched_for_dohye", "understood_meaning"],
+      minFlagMatches: {
+        flags: [
+          "accepted_polaris",
+          "supported_writing",
+          "kept_jinuk_secret",
+          "stayed_with_pain",
+          "helped_yul_accept",
+          "searched_for_dohye",
+          "named_yul_change",
+          "saw_yul_change",
+        ],
+        count: 5,
+      },
     },
     summary: [
       "당신은 누군가를 쉽게 단정하지 않는 법을 배웠다.",
@@ -31,9 +43,9 @@ export const ENDINGS: Ending[] = [
     condition: {
       statsMin: { sight: 30, care: 25 },
       relationMax: {
-        yul: { guard: 50 },
+        yul: { guard: 58 },
       },
-      anyFlags: ["reserved_judgment", "noticed_yul_gaze"],
+      anyFlags: ["noticed_yul_discomfort", "helped_yul_accept", "saw_yul_change", "named_yul_change"],
     },
     summary: [
       "당신은 안율을 처음 본 모습으로만 기억하지 않게 되었다.",
@@ -51,7 +63,7 @@ export const ENDINGS: Ending[] = [
     condition: {
       statsMax: { courage: 20 },
       minFlagMatches: {
-        flags: ["silent_observer", "watched_fight", "avoided_hospital"],
+        flags: ["watched_fight", "avoided_hospital", "left_hospital", "stepped_back_from_pain"],
         count: 2,
       },
     },
@@ -69,13 +81,18 @@ export const ENDINGS: Ending[] = [
     priority: 60,
     imageAsset: "endings.hastyGaze",
     condition: {
-      statsMax: { sight: 20 },
-      relationMin: {
-        yul: { guard: 70 },
-        dohye: { guard: 70 },
+      statsMax: { sight: 18 },
+      minFlagMatches: {
+        flags: [
+          "misjudged_dohye",
+          "suspected_yul",
+          "spread_jinuk_secret",
+          "mocked_jimin",
+          "judged_yul_coward",
+          "missed_yul_change",
+        ],
+        count: 2,
       },
-      requiredFlags: ["believed_rumor"],
-      anyFlags: ["spread_dohye_rumor", "dug_into_secret"],
     },
     summary: [
       "당신은 소문과 첫인상을 사실처럼 받아들였다.",
@@ -96,7 +113,7 @@ export const ENDINGS: Ending[] = [
         dohye: { trust: 20 },
       },
       requiredFlags: ["searched_for_dohye"],
-      forbiddenFlags: ["understood_meaning"],
+      forbiddenFlags: ["organized_search", "named_yul_change"],
     },
     summary: [
       "당신은 이도해를 찾는 길에 함께 섰다.",

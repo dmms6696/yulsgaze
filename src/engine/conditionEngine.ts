@@ -1,4 +1,4 @@
-import type { CharacterId, GameCondition, GameState, RelationStats, StatKey } from "../types/game";
+import type { GameCondition, GameState, RelationCharacterId, RelationStats, StatKey } from "../types/game";
 
 function hasFlag(state: GameState, flag: string) {
   return state.flags.includes(flag as never);
@@ -20,13 +20,13 @@ function checkStatsMax(state: GameState, stats?: Partial<Record<StatKey, number>
 
 function checkRelationMin(
   state: GameState,
-  relations?: Partial<Record<CharacterId, Partial<RelationStats>>>,
+  relations?: Partial<Record<RelationCharacterId, Partial<RelationStats>>>,
 ) {
   if (!relations) {
     return true;
   }
   return Object.entries(relations).every(([characterId, relation]) => {
-    const current = state.relations[characterId as CharacterId];
+    const current = state.relations[characterId as RelationCharacterId];
     if (!current) {
       return false;
     }
@@ -38,13 +38,13 @@ function checkRelationMin(
 
 function checkRelationMax(
   state: GameState,
-  relations?: Partial<Record<CharacterId, Partial<RelationStats>>>,
+  relations?: Partial<Record<RelationCharacterId, Partial<RelationStats>>>,
 ) {
   if (!relations) {
     return true;
   }
   return Object.entries(relations).every(([characterId, relation]) => {
-    const current = state.relations[characterId as CharacterId];
+    const current = state.relations[characterId as RelationCharacterId];
     if (!current) {
       return false;
     }

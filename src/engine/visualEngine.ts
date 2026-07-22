@@ -3,11 +3,13 @@ import { BACKGROUND_TO_SCENE_PRESET, ACT_TRANSITION_VISUALS, SCENE_PRESETS } fro
 import { CHARACTERS, getCharacterName } from "../data/characters";
 import type {
   ActNumber,
-  CharacterId,
   CharacterPosition,
   GameEvent,
+  RelationCharacterId,
   SceneCharacter,
   SceneVisual,
+  SceneVisualOverride,
+  VisualCharacterId,
 } from "../types/game";
 
 const AUTO_POSITIONS: Record<number, CharacterPosition[]> = {
@@ -17,7 +19,7 @@ const AUTO_POSITIONS: Record<number, CharacterPosition[]> = {
   4: ["far-left", "center-left", "center-right", "far-right"],
 };
 
-const SPEAKER_ALIASES: Record<string, CharacterId> = {
+const SPEAKER_ALIASES: Record<string, RelationCharacterId> = {
   안율: "yul",
   율: "yul",
   이도해: "dohye",
@@ -44,7 +46,7 @@ export function getActFallbackBackgroundKey(act: ActNumber): string {
   return ACT_DEFAULT_BACKGROUND_ASSETS[act] ?? "backgrounds.commonDefault";
 }
 
-export function getSpeakerCharacterId(speaker?: string): CharacterId | undefined {
+export function getSpeakerCharacterId(speaker?: string): RelationCharacterId | undefined {
   if (!speaker) {
     return undefined;
   }
@@ -62,7 +64,7 @@ export function getSpeakerCharacterId(speaker?: string): CharacterId | undefined
   return CHARACTERS.find((character) => speaker.includes(character.name))?.id;
 }
 
-export function getCharacterExpressionFromAsset(assetKey: string | undefined, characterId: CharacterId) {
+export function getCharacterExpressionFromAsset(assetKey: string | undefined, characterId: VisualCharacterId) {
   if (!assetKey) {
     return "neutral";
   }
@@ -123,7 +125,23 @@ export function getEventVisual(event: GameEvent): SceneVisual {
   };
 }
 
-export function getFocusedCharacterId(event: GameEvent, visual: SceneVisual): CharacterId | undefined {
+export function getMergedSceneVisual(visual: SceneVisual, override?: SceneVisualOverride): SceneVisual {
+  if (!override) {
+    return visual;
+  }
+
+  return {
+    ...visual,
+    ...override,
+    focalPoint: override.focalPoint ?? visual.focalPoint,
+  };
+}
+
+export function getChoiceResultVisual(event: GameEvent, override?: SceneVisualOverride): SceneVisual {
+  return getMergedSceneVisual(getEventVisual(event), override);
+}
+
+export function getFocusedCharacterId(event: GameEvent, visual: SceneVisual): RelationCharacterId | undefined {
   if (visual.speakerFocus === false) {
     return undefined;
   }

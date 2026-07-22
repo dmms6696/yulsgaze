@@ -39,6 +39,7 @@ function extractManifestAssets() {
     const trimmed = line.trim();
     const open = trimmed.match(/^([A-Za-z0-9_]+):\s*\{$/);
     const leaf = trimmed.match(/^([A-Za-z0-9_]+):\s*assetPath\("([^"]+)"\),?$/);
+    const emptyLeaf = trimmed.match(/^([A-Za-z0-9_]+):\s*missingAsset\(\),?$/);
 
     if (open) {
       stack.push(open[1]);
@@ -51,6 +52,18 @@ function extractManifestAssets() {
         key,
         webPath: `./assets/${leaf[2]}`,
         filePath: join(root, "public", "assets", leaf[2]),
+        pending: false,
+      });
+      return;
+    }
+
+    if (emptyLeaf) {
+      const key = [...stack, emptyLeaf[1]].join(".");
+      assets.set(key, {
+        key,
+        webPath: "",
+        filePath: "",
+        pending: true,
       });
       return;
     }
@@ -127,7 +140,9 @@ const usedKeys = Array.from(new Set(usages.map((usage) => usage.key))).sort();
 const missingManifest = usedKeys.filter((key) => !manifestAssets.has(key));
 const usedMissingFiles = usedKeys
   .filter((key) => manifestAssets.has(key))
+  .filter((key) => !manifestAssets.get(key).pending)
   .filter((key) => !existsSync(manifestAssets.get(key).filePath));
+const usedPendingAssets = usedKeys.filter((key) => manifestAssets.get(key)?.pending);
 const unusedManifestKeys = Array.from(manifestAssets.keys()).filter((key) => !usedKeys.includes(key)).sort();
 
 const eventUsage = new Map();
@@ -145,6 +160,7 @@ const report = [
   `- Used keys in source: ${usedKeys.length}`,
   `- Missing manifest entries: ${missingManifest.length}`,
   `- Used keys with missing files: ${usedMissingFiles.length}`,
+  `- Used keys waiting for future files: ${usedPendingAssets.length}`,
   "",
   "## Used Asset Keys",
   "",
@@ -170,6 +186,10 @@ const report = [
     }),
     "- None.",
   ),
+  "",
+  "## Used Keys Waiting For Future Files",
+  "",
+  formatTable(usedPendingAssets.map((key) => `- \`${key}\``), "- None."),
   "",
   "## Event Usage",
   "",

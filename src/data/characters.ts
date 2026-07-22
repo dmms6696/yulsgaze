@@ -46,15 +46,20 @@ export const CHARACTERS: CharacterDefinition[] = [
 ];
 
 export const INITIAL_RELATIONS: RelationMap = {
-  yul: { closeness: 5, trust: 5, guard: 80 },
-  dohye: { closeness: 0, trust: 0, guard: 60 },
-  jinuk: { closeness: 25, trust: 15, guard: 35 },
-  minwoo: { closeness: 20, trust: 10, guard: 35 },
-  donghwi: { closeness: 15, trust: 10, guard: 30 },
-  jimin: { closeness: 10, trust: 10, guard: 50 },
-  classmates: { closeness: 30, trust: 20, guard: 25 },
+  yul: { closeness: 15, trust: 15, guard: 55 },
+  dohye: { closeness: 10, trust: 10, guard: 70 },
+  jinuk: { closeness: 50, trust: 25, guard: 25 },
+  minwoo: { closeness: 15, trust: 10, guard: 35 },
+  donghwi: { closeness: 35, trust: 25, guard: 15 },
+  jimin: { closeness: 40, trust: 40, guard: 40 },
+  classmates: { closeness: 30, trust: 25, guard: 20 },
+};
+
+export const VISUAL_CHARACTER_NAMES: Record<string, string> = {
+  yulMother: "안율의 엄마",
+  jinukFather: "서진욱의 아버지",
 };
 
 export function getCharacterName(characterId: string) {
-  return CHARACTERS.find((character) => character.id === characterId)?.name ?? characterId;
+  return CHARACTERS.find((character) => character.id === characterId)?.name ?? VISUAL_CHARACTER_NAMES[characterId] ?? characterId;
 }

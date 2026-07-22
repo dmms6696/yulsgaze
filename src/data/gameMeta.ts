@@ -1,6 +1,6 @@
 import type { ActNumber } from "../types/game";
 
-export const GAME_VERSION = 1;
+export const GAME_VERSION = 2;
 export const FIRST_EVENT_ID = "EVENT_01";
 export const ENDING_CHECK_EVENT_ID = "ENDING_CHECK";
 
@@ -16,10 +16,10 @@ export const GAME_META = {
 };
 
 export const ACT_TITLES: Record<ActNumber, string> = {
-  1: "1막: 소문과 첫인상",
-  2: "2막: 이상한 행동과 숨겨진 이유",
-  3: "3막: 소문, 질투, 방관과 충돌",
-  4: "4막: 상처의 인정과 북극성",
+  1: "1막: 첫 관계와 작은 신뢰",
+  2: "2막: 소문과 충돌 사이",
+  3: "3막: 상처를 마주하는 시간",
+  4: "4막: 찾는 마음과 북극성",
 };
 
 export const ACT_QUESTIONS: Record<ActNumber, string> = {

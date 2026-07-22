@@ -1,7 +1,7 @@
 import { CHARACTERS, getCharacterName } from "../data/characters";
 import { FLAG_LABELS } from "../data/flags";
 import { STAT_DEFINITIONS } from "../data/stats";
-import type { ChangeEntry, CharacterId, GameEffects, GameState, RelationStats, StatKey } from "../types/game";
+import type { ChangeEntry, GameEffects, GameState, RelationCharacterId, RelationStats, StatKey } from "../types/game";
 import { clamp, unique } from "../utils/value";
 import { formatDelta } from "../utils/text";
 
@@ -48,11 +48,11 @@ export function applyEffects(state: GameState, effects?: GameEffects) {
 
   if (effects?.relations) {
     Object.entries(effects.relations).forEach(([characterId, relationChanges]) => {
-      if (!CHARACTER_IDS.has(characterId as CharacterId)) {
+      if (!CHARACTER_IDS.has(characterId as RelationCharacterId)) {
         console.warn("알 수 없는 관계 대상이 무시되었습니다.", characterId);
         return;
       }
-      const relation = nextState.relations[characterId as CharacterId];
+      const relation = nextState.relations[characterId as RelationCharacterId];
       Object.entries(relationChanges ?? {}).forEach(([key, delta]) => {
         const relationKey = key as keyof RelationStats;
         if (!(relationKey in relation) || typeof delta !== "number") {
@@ -63,9 +63,11 @@ export function applyEffects(state: GameState, effects?: GameEffects) {
         const after = clamp(before + delta);
         relation[relationKey] = after;
         if (after !== before) {
+          const deltaLabel = formatDelta(after - before);
+          const guardMeaning = relationKey === "guard" && after < before ? " · 마음의 경계가 낮아짐" : "";
           changes.push({
             target: "relation",
-            label: `${getCharacterName(characterId)} ${RELATION_LABELS[relationKey]} ${formatDelta(after - before)}`,
+            label: `${getCharacterName(characterId)} ${RELATION_LABELS[relationKey]} ${deltaLabel}${guardMeaning}`,
             delta: after - before,
             direction: after > before ? "up" : "down",
           });

@@ -2,7 +2,7 @@ export type ActNumber = 1 | 2 | 3 | 4;
 
 export type StatKey = "sight" | "courage" | "care" | "sincerity";
 
-export type CharacterId =
+export type RelationCharacterId =
   | "yul"
   | "dohye"
   | "jinuk"
@@ -10,6 +10,12 @@ export type CharacterId =
   | "donghwi"
   | "jimin"
   | "classmates";
+
+export type NpcId = "yulMother" | "jinukFather";
+
+export type VisualCharacterId = RelationCharacterId | NpcId;
+
+export type CharacterId = RelationCharacterId;
 
 export type SceneVisualMode = "background" | "characters" | "illustration";
 
@@ -27,42 +33,75 @@ export type SceneOverlay = "none" | "dim" | "rain" | "mist" | "sunset" | "night"
 export type SceneTransition = "fade" | "crossfade" | "none";
 
 export type FlagId =
-  | "believed_rumor"
-  | "reserved_judgment"
-  | "silent_observer"
-  | "misread_yul"
-  | "noticed_yul_gaze"
-  | "spread_dohye_rumor"
   | "asked_dohye_gently"
   | "quiet_support"
-  | "heard_dohye_change"
-  | "shared_rooftop_silence"
+  | "admitted_interest"
+  | "admitted_lie"
+  | "asked_polaris_meaning"
+  | "accepted_polaris"
+  | "dismissed_polaris"
+  | "helped_cat_safely"
+  | "supported_writing"
+  | "promised_second_reader"
+  | "stayed_with_dark_question"
+  | "avoided_dark_question"
   | "kept_jinuk_secret"
-  | "tempted_to_spread_secret"
-  | "enjoyed_gossip"
-  | "stopped_gossip"
-  | "avoided_gossip"
-  | "called_teacher"
-  | "watched_fight"
-  | "tried_group_stop"
-  | "understood_jimin"
-  | "dug_into_secret"
   | "protected_jinuk_secret"
+  | "tempted_to_spread_secret"
+  | "spread_jinuk_secret"
+  | "understood_jimin"
+  | "quiet_support_jimin"
+  | "mocked_jimin"
+  | "called_teacher"
+  | "tried_group_stop"
+  | "watched_fight"
+  | "reported_notes"
+  | "offered_to_listen"
+  | "defended_yul"
   | "suspected_yul"
   | "helped_hospital"
+  | "pressured_parent_contact"
   | "avoided_hospital"
+  | "waited_for_jinuk"
+  | "asked_father_gently"
+  | "confronted_father"
+  | "heard_jinuk_dream"
+  | "encouraged_jinuk"
   | "followed_class_mood"
   | "noticed_yul_discomfort"
+  | "pointed_out_class"
+  | "helped_reconcile"
+  | "centered_yul_excuse"
+  | "centered_apology"
+  | "sought_adult_help"
+  | "misjudged_dohye"
+  | "helped_cat_funeral"
   | "stayed_with_pain"
   | "stepped_back_from_pain"
+  | "sought_adult_help_for_abuse"
+  | "promised_secrecy_only"
+  | "rejected_disclosure"
   | "helped_yul_accept"
-  | "waited_for_yul"
+  | "told_yul_forget"
+  | "shared_helplessness"
+  | "understood_yul_fear"
+  | "judged_yul_coward"
+  | "asked_future_choice"
+  | "respected_counseling_experience"
+  | "judged_counseling_exit"
+  | "sought_better_help"
+  | "waited_at_hospital"
+  | "read_story_to_dohye"
+  | "left_hospital"
+  | "promised_shared_search"
   | "doubted_meaning"
+  | "understood_persistence"
   | "searched_for_dohye"
-  | "understood_meaning"
+  | "organized_search"
+  | "doubted_search"
   | "saw_yul_change"
-  | "named_yul_change"
-  | "missed_yul_change";
+  | "missed_yul_change"
+  | "named_yul_change";
 
 export type EventType =
   | "narration"
@@ -101,7 +140,7 @@ export interface StatDefinition {
 }
 
 export interface CharacterAssetState {
-  characterId: CharacterId;
+  characterId: VisualCharacterId;
   assetKey: string;
   label?: string;
   expression?: string;
@@ -116,7 +155,7 @@ export interface CharacterAssetState {
 }
 
 export interface SceneCharacter {
-  characterId: CharacterId;
+  characterId: VisualCharacterId;
   expression?: string;
   position?: CharacterPosition;
   scale?: number;
@@ -159,11 +198,28 @@ export interface SceneVisual {
   speakerFocus?: boolean;
 }
 
+export interface SceneVisualOverride {
+  mode?: SceneVisualMode;
+  backgroundAsset?: string;
+  illustrationAsset?: string;
+  characters?: SceneCharacter[];
+  props?: SceneProp[];
+  overlay?: SceneOverlay;
+  transition?: SceneTransition;
+  focalPoint?: {
+    x: number;
+    y: number;
+  };
+  alt?: string;
+  scenePreset?: string;
+  speakerFocus?: boolean;
+}
+
 export interface GameCondition {
   statsMin?: Partial<PlayerStats>;
   statsMax?: Partial<PlayerStats>;
-  relationMin?: Partial<Record<CharacterId, Partial<RelationStats>>>;
-  relationMax?: Partial<Record<CharacterId, Partial<RelationStats>>>;
+  relationMin?: Partial<Record<RelationCharacterId, Partial<RelationStats>>>;
+  relationMax?: Partial<Record<RelationCharacterId, Partial<RelationStats>>>;
   requiredFlags?: FlagId[];
   forbiddenFlags?: FlagId[];
   anyFlags?: FlagId[];
@@ -176,7 +232,7 @@ export interface GameCondition {
 
 export interface GameEffects {
   stats?: Partial<PlayerStats>;
-  relations?: Partial<Record<CharacterId, Partial<RelationStats>>>;
+  relations?: Partial<Record<RelationCharacterId, Partial<RelationStats>>>;
   addFlags?: FlagId[];
   removeFlags?: FlagId[];
 }
@@ -186,6 +242,7 @@ export interface GameChoice {
   text: string;
   resultText: string;
   effects?: GameEffects;
+  resultVisual?: SceneVisualOverride;
   required?: GameCondition;
   disabledReason?: string;
   nextEventId?: string;

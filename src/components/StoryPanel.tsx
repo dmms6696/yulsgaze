@@ -13,11 +13,12 @@ interface StoryPanelProps {
   warning?: string;
   choiceViews: ChoiceView[];
   pendingResolution: ChoiceResolution | null;
+  choiceDisabled: boolean;
   onChoice: (choiceId: string) => void;
   onContinue: () => void;
 }
 
-export function StoryPanel({ event, warning, choiceViews, pendingResolution, onChoice, onContinue }: StoryPanelProps) {
+export function StoryPanel({ event, warning, choiceViews, pendingResolution, choiceDisabled, onChoice, onContinue }: StoryPanelProps) {
   const storyCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -80,7 +81,7 @@ export function StoryPanel({ event, warning, choiceViews, pendingResolution, onC
         ) : (
           <div className="choices">
             {choiceViews.map((view) => (
-              <ChoiceButton key={view.choice.id} view={view} onChoice={onChoice} />
+              <ChoiceButton key={view.choice.id} view={view} disabled={choiceDisabled} onChoice={onChoice} />
             ))}
           </div>
         )}

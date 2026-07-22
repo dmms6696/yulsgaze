@@ -1,6 +1,7 @@
 import { FIRST_EVENT_ID, GAME_VERSION } from "../data/gameMeta";
 import { INITIAL_RELATIONS } from "../data/characters";
 import { INITIAL_PLAYER_STATS } from "../data/stats";
+import { EVENT_MAP } from "../data/events";
 import type { FlagId, GameState } from "../types/game";
 import { clamp, safeNumber } from "../utils/value";
 
@@ -55,14 +56,20 @@ export function repairState(value: unknown): GameState | null {
     return null;
   }
   const raw = value as Partial<GameState>;
-  if (raw.version !== GAME_VERSION || typeof raw.playerName !== "string" || !raw.playerName.trim()) {
+  if (typeof raw.playerName !== "string" || !raw.playerName.trim()) {
     return null;
   }
 
+  if (raw.version !== GAME_VERSION) {
+    return createInitialState(raw.playerName);
+  }
+
   const base = createInitialState(raw.playerName);
+  const currentEventId =
+    typeof raw.currentEventId === "string" && EVENT_MAP.has(raw.currentEventId) ? raw.currentEventId : base.currentEventId;
   return {
     ...base,
-    currentEventId: typeof raw.currentEventId === "string" ? raw.currentEventId : base.currentEventId,
+    currentEventId,
     currentAct: raw.currentAct === 1 || raw.currentAct === 2 || raw.currentAct === 3 || raw.currentAct === 4 ? raw.currentAct : 1,
     stats: {
       sight: clamp(safeNumber(raw.stats?.sight, base.stats.sight)),

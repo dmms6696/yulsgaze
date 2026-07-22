@@ -6,11 +6,13 @@ import {
   resolveAssetPath,
   resolvePropAsset,
 } from "../data/assetManifest";
-import { isKnownMissingAsset, markAssetMissing, preloadAssetPaths } from "../engine/assetLoading";
+import { isKnownMissingAsset, isPreloadedAsset, markAssetMissing, preloadAssetPaths } from "../engine/assetLoading";
 import {
+  collectSceneVisualPaths,
   getAutoCharacterPosition,
   getCharacterLabel,
   getChoiceResultVisual,
+  isDedicatedIllustrationVisual,
   shouldDimCharacter,
 } from "../engine/visualEngine";
 import type { CharacterPosition, GameEvent, SceneCharacter, SceneProp, SceneVisual as SceneVisualData, SceneVisualOverride } from "../types/game";
@@ -50,13 +52,13 @@ function ManagedImage({ src, sources, alt, className, style, onMissing, children
   const firstAvailableSource = sourceList.find((source) => !isKnownMissingAsset(source));
   const [activeSource, setActiveSource] = useState(firstAvailableSource);
   const [status, setStatus] = useState<"loading" | "loaded" | "failed">(
-    firstAvailableSource ? "loading" : "failed",
+    firstAvailableSource ? (isPreloadedAsset(firstAvailableSource) ? "loaded" : "loading") : "failed",
   );
 
   useEffect(() => {
     const nextSource = sourceList.find((source) => !isKnownMissingAsset(source));
     setActiveSource(nextSource);
-    setStatus(nextSource ? "loading" : "failed");
+    setStatus(nextSource ? (isPreloadedAsset(nextSource) ? "loaded" : "loading") : "failed");
   }, [sourceKey]);
 
   if (!activeSource || status === "failed") {
@@ -70,6 +72,9 @@ function ManagedImage({ src, sources, alt, className, style, onMissing, children
         className={`${className} visual-image ${status === "loaded" ? "loaded" : "pending"}`}
         src={activeSource}
         alt={alt}
+        decoding="async"
+        fetchPriority="high"
+        loading="eager"
         style={style}
         onLoad={() => setStatus("loaded")}
         onError={() => {
@@ -212,33 +217,32 @@ export function SceneVisual({ event, visualOverride }: SceneVisualProps) {
   const characters = visual.characters ?? [];
   const props = visual.props ?? [];
   const objectPosition = `${clampPercent(visual.focalPoint?.x ?? 50)}% ${clampPercent(visual.focalPoint?.y ?? 46)}%`;
-  const preloadPaths = [
-    ...backgroundCandidates,
-    illustrationPath,
-    ...characters.flatMap((character) => getCharacterAssetCandidates(character.characterId, character.expression)),
-    ...props.map((prop) => resolvePropAsset(prop.assetKey)),
-  ];
+  const dedicatedIllustration = isDedicatedIllustrationVisual(visual);
+  const preloadPaths = collectSceneVisualPaths(visual, event.act);
   const preloadKey = preloadPaths.join("|");
 
   useEffect(() => {
     preloadAssetPaths(preloadPaths);
   }, [preloadKey]);
 
-  const shouldRenderLayeredScene = visual.mode !== "background";
+  const shouldRenderBackground = !dedicatedIllustration;
+  const shouldRenderLayeredScene = visual.mode === "characters";
 
   return (
     <div
       className={`scene-visual scene-mode-${visual.mode} overlay-${visual.overlay ?? "none"}`}
       aria-label={visual.alt ?? `${event.title} 장면 이미지 영역`}
     >
-      <ManagedImage
-        sources={backgroundCandidates}
-        alt={`${event.title} 배경`}
-        className="scene-background-image"
-        style={{ objectPosition }}
-      >
-        <ScenePlaceholder title={event.title} assetKey={visual.backgroundAsset} kind="배경 이미지 슬롯" />
-      </ManagedImage>
+      {shouldRenderBackground ? (
+        <ManagedImage
+          sources={backgroundCandidates}
+          alt={`${event.title} 배경`}
+          className="scene-background-image"
+          style={{ objectPosition }}
+        >
+          <ScenePlaceholder title={event.title} assetKey={visual.backgroundAsset} kind="배경 이미지 슬롯" />
+        </ManagedImage>
+      ) : null}
 
       {shouldRenderLayeredScene ? (
         <>
@@ -249,13 +253,15 @@ export function SceneVisual({ event, visualOverride }: SceneVisualProps) {
         </>
       ) : null}
 
-      {visual.mode === "illustration" ? (
+      {dedicatedIllustration ? (
         <ManagedImage
-          src={illustrationPath}
+          sources={[illustrationPath, ...backgroundCandidates]}
           alt={visual.alt ?? `${event.title} 핵심 일러스트`}
           className="scene-illustration-image"
           style={{ objectPosition }}
-        />
+        >
+          <ScenePlaceholder title={event.title} assetKey={visual.illustrationAsset} kind="전용 일러스트 이미지 슬롯" />
+        </ManagedImage>
       ) : null}
 
       <div className="scene-visual-caption" aria-hidden="true">

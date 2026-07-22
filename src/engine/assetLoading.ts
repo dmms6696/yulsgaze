@@ -11,6 +11,10 @@ export function isKnownMissingAsset(src?: string) {
   return src ? failedAssetPaths.has(src) : true;
 }
 
+export function isPreloadedAsset(src?: string) {
+  return src ? preloadedAssetPaths.has(src) : false;
+}
+
 export function preloadImage(src?: string): Promise<boolean> {
   if (!src || failedAssetPaths.has(src)) {
     return Promise.resolve(false);
@@ -21,6 +25,10 @@ export function preloadImage(src?: string): Promise<boolean> {
 
   return new Promise((resolve) => {
     const image = new Image();
+    image.decoding = "async";
+    if ("fetchPriority" in image) {
+      (image as HTMLImageElement & { fetchPriority: "high" }).fetchPriority = "high";
+    }
     image.onload = () => {
       preloadedAssetPaths.add(src);
       resolve(true);

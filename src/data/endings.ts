@@ -3,26 +3,39 @@ import type { Ending, FlagId } from "../types/game";
 const BRIDGE_FLAGS: FlagId[] = [
   "accepted_polaris",
   "asked_polaris_meaning",
+  "noticed_yul_eye_avoidance",
+  "accepted_yul_difference",
+  "noticed_dohye_sleeves",
   "supported_writing",
   "promised_second_reader",
   "kept_jinuk_secret",
   "protected_jinuk_secret",
   "understood_jimin",
+  "helped_minwoo_confess",
   "offered_to_listen",
   "defended_yul",
   "helped_hospital",
   "waited_for_jinuk",
   "heard_jinuk_dream",
+  "heard_jinuk_mixed_feelings",
   "encouraged_jinuk",
+  "stopped_donghwi_gossip",
   "noticed_yul_discomfort",
   "helped_reconcile",
   "centered_apology",
   "stayed_with_pain",
+  "chose_continuing_understanding",
   "sought_adult_help_for_abuse",
+  "told_yul_not_his_fault",
   "helped_yul_accept",
   "understood_yul_fear",
+  "connected_yul_trauma",
+  "waited_at_columbarium",
+  "helped_yul_face_grief",
   "sought_better_help",
   "read_story_to_dohye",
+  "reported_dohye_missing",
+  "shared_dohye_star",
   "promised_shared_search",
   "understood_persistence",
   "searched_for_dohye",
@@ -32,9 +45,17 @@ const BRIDGE_FLAGS: FlagId[] = [
 ];
 
 const YUL_RESEE_FLAGS: FlagId[] = [
+  "noticed_yul_eye_avoidance",
+  "accepted_yul_difference",
   "noticed_yul_discomfort",
+  "chose_continuing_understanding",
+  "told_yul_not_his_fault",
+  "connected_yul_trauma",
   "helped_yul_accept",
   "understood_yul_fear",
+  "waited_at_columbarium",
+  "helped_yul_face_grief",
+  "shared_dohye_star",
   "saw_yul_change",
   "named_yul_change",
 ];
@@ -42,9 +63,18 @@ const YUL_RESEE_FLAGS: FlagId[] = [
 const HASTY_FLAGS: FlagId[] = [
   "misjudged_dohye",
   "suspected_yul",
+  "forced_yul_eye_contact",
+  "encouraged_yul_mask",
+  "mocked_dohye_sleeves",
   "spread_jinuk_secret",
+  "used_minwoo_secret",
   "mocked_jimin",
+  "encouraged_donghwi_gossip",
+  "gave_up_understanding",
+  "explained_bystanders_first",
   "judged_yul_coward",
+  "rushed_yul_grief",
+  "ignored_empty_hospital",
   "missed_yul_change",
 ];
 
@@ -53,9 +83,11 @@ const WITHDRAWAL_FLAGS: FlagId[] = [
   "avoided_hospital",
   "left_hospital",
   "stepped_back_from_pain",
+  "silently_watched_gossip",
   "avoided_dark_question",
   "doubted_meaning",
   "doubted_search",
+  "ignored_empty_hospital",
 ];
 
 export const ENDINGS: Ending[] = [
@@ -102,20 +134,23 @@ export const ENDINGS: Ending[] = [
     priority: 78,
     imageAsset: "endings.slowResee",
     condition: {
-      statsMin: { sight: 28, care: 24 },
+      statsMin: { sight: 26, care: 22 },
       relationMin: {
-        yul: { trust: 30 },
+        yul: { trust: 28 },
       },
-      anyFlags: YUL_RESEE_FLAGS,
+      minFlagMatches: {
+        flags: YUL_RESEE_FLAGS,
+        count: 3,
+      },
       maxFlagMatches: {
         flags: HASTY_FLAGS,
-        count: 2,
+        count: 3,
       },
       allOf: [
         {
           maxFlagMatches: {
             flags: WITHDRAWAL_FLAGS,
-            count: 1,
+            count: 2,
           },
         },
       ],
@@ -134,14 +169,14 @@ export const ENDINGS: Ending[] = [
     priority: 65,
     imageAsset: "endings.safeObserver",
     condition: {
-      statsMax: { courage: 28 },
+      statsMax: { courage: 36 },
       minFlagMatches: {
         flags: WITHDRAWAL_FLAGS,
         count: 2,
       },
       maxFlagMatches: {
         flags: HASTY_FLAGS,
-        count: 2,
+        count: 4,
       },
     },
     summary: [
@@ -160,16 +195,16 @@ export const ENDINGS: Ending[] = [
     condition: {
       anyOf: [
         {
-          statsMax: { sight: 16 },
+          statsMax: { sight: 18 },
           minFlagMatches: {
             flags: HASTY_FLAGS,
-            count: 2,
+            count: 5,
           },
         },
         {
           minFlagMatches: {
             flags: HASTY_FLAGS,
-            count: 3,
+            count: 7,
           },
         },
       ],
@@ -185,7 +220,7 @@ export const ENDINGS: Ending[] = [
     id: "ENDING_LATE_HEART",
     title: "늦었지만 남은 마음",
     subtitle: "이도해 중심 여운 엔딩",
-    priority: 50,
+    priority: 82,
     imageAsset: "endings.lateHeart",
     condition: {
       requiredFlags: ["searched_for_dohye"],
@@ -195,7 +230,7 @@ export const ENDINGS: Ending[] = [
       ],
       maxFlagMatches: {
         flags: HASTY_FLAGS,
-        count: 2,
+        count: 3,
       },
     },
     summary: [

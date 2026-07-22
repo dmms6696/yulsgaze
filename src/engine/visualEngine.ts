@@ -1,4 +1,10 @@
-import { ACT_DEFAULT_BACKGROUND_ASSETS } from "../data/assetManifest";
+import {
+  ACT_DEFAULT_BACKGROUND_ASSETS,
+  getBackgroundAssetCandidates,
+  getCharacterAssetCandidates,
+  resolveAssetPath,
+  resolvePropAsset,
+} from "../data/assetManifest";
 import { BACKGROUND_TO_SCENE_PRESET, ACT_TRANSITION_VISUALS, SCENE_PRESETS } from "../data/scenePresets";
 import { CHARACTERS, getCharacterName } from "../data/characters";
 import type {
@@ -130,15 +136,69 @@ export function getMergedSceneVisual(visual: SceneVisual, override?: SceneVisual
     return visual;
   }
 
-  return {
+  const nextMode =
+    override.mode ??
+    (override.illustrationAsset ? "illustration" : override.characters || override.props ? "characters" : visual.mode);
+  const merged: SceneVisual = {
     ...visual,
     ...override,
+    mode: nextMode,
+    illustrationAsset:
+      nextMode === "illustration" ? (override.illustrationAsset ?? visual.illustrationAsset) : override.illustrationAsset,
+    characters: nextMode === "characters" ? (override.characters ?? visual.characters) : override.characters,
+    props: nextMode === "characters" ? (override.props ?? visual.props) : override.props,
     focalPoint: override.focalPoint ?? visual.focalPoint,
   };
+
+  if (nextMode !== "illustration" && !override.illustrationAsset) {
+    delete merged.illustrationAsset;
+  }
+  if (nextMode !== "characters") {
+    delete merged.characters;
+    delete merged.props;
+  }
+
+  return merged;
 }
 
 export function getChoiceResultVisual(event: GameEvent, override?: SceneVisualOverride): SceneVisual {
   return getMergedSceneVisual(getEventVisual(event), override);
+}
+
+export function isDedicatedIllustrationVisual(visual: SceneVisual) {
+  return visual.mode === "illustration" && Boolean(visual.illustrationAsset);
+}
+
+export function collectSceneVisualPaths(visual: SceneVisual, act: ActNumber): string[] {
+  const paths = new Set<string>();
+  const backgroundCandidates = getBackgroundAssetCandidates(visual.backgroundAsset, act);
+  const illustrationPath = visual.illustrationAsset ? resolveAssetPath(visual.illustrationAsset) : undefined;
+
+  if (isDedicatedIllustrationVisual(visual)) {
+    [illustrationPath, ...backgroundCandidates].forEach((path) => {
+      if (path) {
+        paths.add(path);
+      }
+    });
+    return Array.from(paths);
+  }
+
+  backgroundCandidates.forEach((path) => paths.add(path));
+  visual.characters?.forEach((character) => {
+    getCharacterAssetCandidates(character.characterId, character.expression).forEach((path) => paths.add(path));
+  });
+  visual.props?.forEach((prop) => {
+    const path = resolvePropAsset(prop.assetKey);
+    if (path) {
+      paths.add(path);
+    }
+  });
+
+  return Array.from(paths);
+}
+
+export function collectEventAssetPaths(event: GameEvent, override?: SceneVisualOverride): string[] {
+  return collectSceneVisualPaths(getChoiceResultVisual(event, override), event.act);
 }
 
 export function getFocusedCharacterId(event: GameEvent, visual: SceneVisual): RelationCharacterId | undefined {
@@ -164,6 +224,13 @@ export function getCharacterLabel(character: SceneCharacter) {
 
 export function getActTransitionVisual(act: ActNumber) {
   return ACT_TRANSITION_VISUALS[act];
+}
+
+export function collectActTransitionAssetPaths(act: ActNumber): string[] {
+  const transition = getActTransitionVisual(act);
+  return Array.from(
+    new Set([resolveAssetPath(transition.imageAsset), resolveAssetPath(transition.backgroundAsset)].filter(Boolean)),
+  ) as string[];
 }
 
 export function shouldShowActTransition(event: GameEvent, dismissedActs: Partial<Record<ActNumber, boolean>>) {

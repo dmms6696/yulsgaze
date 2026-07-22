@@ -7,6 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "normalize-images": "node scripts/normalize-story-images.mjs",
+    "audit-image-dimensions": "node scripts/audit-image-dimensions.mjs",
+    "audit-endings": "node scripts/audit-endings.mjs",
     "audit-assets": "node scripts/audit-assets.mjs",
     "validate-story": "node scripts/validate-story.mjs"
   },

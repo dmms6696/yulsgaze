@@ -39,6 +39,7 @@ function extractManifestAssets() {
     const trimmed = line.trim();
     const open = trimmed.match(/^([A-Za-z0-9_]+):\s*\{$/);
     const leaf = trimmed.match(/^([A-Za-z0-9_]+):\s*assetPath\("([^"]+)"\),?$/);
+    const pendingLeaf = trimmed.match(/^([A-Za-z0-9_]+):\s*pendingAsset\("([^"]+)"\),?$/);
     const emptyLeaf = trimmed.match(/^([A-Za-z0-9_]+):\s*missingAsset\(\),?$/);
 
     if (open) {
@@ -57,13 +58,25 @@ function extractManifestAssets() {
       return;
     }
 
+    if (pendingLeaf) {
+      const key = [...stack, pendingLeaf[1]].join(".");
+      assets.set(key, {
+        key,
+        webPath: `./assets/${pendingLeaf[2]}`,
+        filePath: join(root, "public", "assets", pendingLeaf[2]),
+        pending: true,
+      });
+      return;
+    }
+
     if (emptyLeaf) {
       const key = [...stack, emptyLeaf[1]].join(".");
       assets.set(key, {
         key,
         webPath: "",
         filePath: "",
-        pending: true,
+        pending: false,
+        placeholder: true,
       });
       return;
     }
@@ -140,7 +153,10 @@ const usedKeys = Array.from(new Set(usages.map((usage) => usage.key))).sort();
 const missingManifest = usedKeys.filter((key) => !manifestAssets.has(key));
 const usedMissingFiles = usedKeys
   .filter((key) => manifestAssets.has(key))
-  .filter((key) => !manifestAssets.get(key).pending)
+  .filter((key) => {
+    const asset = manifestAssets.get(key);
+    return !asset.pending && !asset.placeholder;
+  })
   .filter((key) => !existsSync(manifestAssets.get(key).filePath));
 const usedPendingAssets = usedKeys.filter((key) => manifestAssets.get(key)?.pending);
 const unusedManifestKeys = Array.from(manifestAssets.keys()).filter((key) => !usedKeys.includes(key)).sort();
@@ -189,7 +205,14 @@ const report = [
   "",
   "## Used Keys Waiting For Future Files",
   "",
-  formatTable(usedPendingAssets.map((key) => `- \`${key}\``), "- None."),
+  formatTable(
+    usedPendingAssets.map((key) => {
+      const asset = manifestAssets.get(key);
+      const expectedPath = asset?.filePath ? relative(root, asset.filePath).replace(/\\/g, "/") : "";
+      return expectedPath ? `- \`${key}\` -> \`${expectedPath}\`` : `- \`${key}\``;
+    }),
+    "- None.",
+  ),
   "",
   "## Event Usage",
   "",

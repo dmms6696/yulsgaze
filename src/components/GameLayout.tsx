@@ -9,6 +9,7 @@ interface GameLayoutProps {
   warning?: string;
   choiceViews: ChoiceView[];
   pendingResolution: ChoiceResolution | null;
+  choiceDisabled: boolean;
   historyOpen: boolean;
   onChoice: (choiceId: string) => void;
   onContinue: () => void;
@@ -23,6 +24,7 @@ export function GameLayout({
   warning,
   choiceViews,
   pendingResolution,
+  choiceDisabled,
   historyOpen,
   onChoice,
   onContinue,
@@ -38,6 +40,7 @@ export function GameLayout({
         warning={warning}
         choiceViews={choiceViews}
         pendingResolution={pendingResolution}
+        choiceDisabled={choiceDisabled}
         onChoice={onChoice}
         onContinue={onContinue}
       />

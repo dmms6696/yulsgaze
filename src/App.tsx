@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ActTransitionScreen } from "./components/ActTransitionScreen";
 import { ConfirmModal } from "./components/ConfirmModal";
 import { EndingScreen } from "./components/EndingScreen";
@@ -6,9 +6,11 @@ import { GameLayout } from "./components/GameLayout";
 import { HelpModal } from "./components/HelpModal";
 import { OrientationGate } from "./components/OrientationGate";
 import { StartScreen } from "./components/StartScreen";
+import { EVENT_MAP } from "./data/events";
+import { preloadAssetPaths } from "./engine/assetLoading";
 import { getCurrentEvent, choose, finalizeIfEndingCheck, getChoiceViews } from "./engine/gameEngine";
 import { clearSave, createInitialState, hasSavedGame, loadGame, saveGame } from "./engine/saveEngine";
-import { shouldShowActTransition } from "./engine/visualEngine";
+import { collectActTransitionAssetPaths, collectEventAssetPaths, shouldShowActTransition } from "./engine/visualEngine";
 import type { ActNumber, ChoiceResolution, GameEvent, GameState } from "./types/game";
 
 export default function App() {
@@ -22,6 +24,8 @@ export default function App() {
   const [pendingResolution, setPendingResolution] = useState<ChoiceResolution | null>(null);
   const [pendingEvent, setPendingEvent] = useState<GameEvent | null>(null);
   const [dismissedActIntros, setDismissedActIntros] = useState<Partial<Record<ActNumber, boolean>>>({});
+  const [choiceProcessing, setChoiceProcessing] = useState(false);
+  const choiceLockedRef = useRef(false);
 
   useEffect(() => {
     setSavedExists(hasSavedGame());
@@ -67,6 +71,28 @@ export default function App() {
     return getCurrentEvent(gameState);
   }, [gameState]);
 
+  useEffect(() => {
+    if (!gameState || !current || pendingResolution) {
+      return;
+    }
+
+    const paths = new Set(collectEventAssetPaths(current.event));
+    if (shouldShowActTransition(current.event, dismissedActIntros)) {
+      collectActTransitionAssetPaths(current.event.act).forEach((path) => paths.add(path));
+    }
+    getChoiceViews(gameState, current.event).forEach(({ choice }) => {
+      collectEventAssetPaths(current.event, choice.resultVisual).forEach((path) => paths.add(path));
+      const nextEvent = choice.nextEventId ? EVENT_MAP.get(choice.nextEventId) : undefined;
+      if (nextEvent) {
+        collectEventAssetPaths(nextEvent).forEach((path) => paths.add(path));
+        if (shouldShowActTransition(nextEvent, dismissedActIntros)) {
+          collectActTransitionAssetPaths(nextEvent.act).forEach((path) => paths.add(path));
+        }
+      }
+    });
+    preloadAssetPaths(Array.from(paths));
+  }, [current, dismissedActIntros, gameState, pendingResolution]);
+
   function startGame(playerName: string) {
     if (!playerName.trim()) {
       setMessage("플레이어 이름을 입력해 주세요.");
@@ -79,6 +105,8 @@ export default function App() {
     setMessage("");
     setPendingEvent(null);
     setPendingResolution(null);
+    setChoiceProcessing(false);
+    choiceLockedRef.current = false;
     setDismissedActIntros({});
   }
 
@@ -93,6 +121,8 @@ export default function App() {
     setMessage("");
     setPendingEvent(null);
     setPendingResolution(null);
+    setChoiceProcessing(false);
+    choiceLockedRef.current = false;
     setDismissedActIntros({});
   }
 
@@ -107,14 +137,18 @@ export default function App() {
     setMessage("");
     setPendingEvent(null);
     setPendingResolution(null);
+    setChoiceProcessing(false);
+    choiceLockedRef.current = false;
     setConfirmResetOpen(false);
     setDismissedActIntros({});
   }
 
   function handleChoice(choiceId: string) {
-    if (!gameState || !current) {
+    if (!gameState || !current || pendingResolution || choiceLockedRef.current) {
       return;
     }
+    choiceLockedRef.current = true;
+    setChoiceProcessing(true);
     try {
       const resolution = choose(gameState, current.event, choiceId);
       setGameState(resolution.state);
@@ -122,6 +156,8 @@ export default function App() {
       setPendingResolution(resolution.resolution);
       saveGame(resolution.state);
     } catch (error) {
+      choiceLockedRef.current = false;
+      setChoiceProcessing(false);
       console.error(error);
       setMessage(error instanceof Error ? error.message : "선택을 처리하지 못했습니다.");
     }
@@ -136,6 +172,8 @@ export default function App() {
     saveGame(finalized);
     setPendingEvent(null);
     setPendingResolution(null);
+    setChoiceProcessing(false);
+    choiceLockedRef.current = false;
   }
 
   if (isPortrait) {
@@ -217,6 +255,7 @@ export default function App() {
         warning={message || current.warning}
         choiceViews={choiceViews}
         pendingResolution={pendingResolution}
+        choiceDisabled={choiceProcessing}
         historyOpen={historyOpen}
         onChoice={handleChoice}
         onContinue={continueAfterResult}

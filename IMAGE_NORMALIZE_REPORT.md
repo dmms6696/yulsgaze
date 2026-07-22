@@ -1,0 +1,59 @@
+# Image Normalize Report
+
+- Target size: 2040x600
+- Checked images: 50
+- Normalized images: 50
+- Skipped images: 0
+
+## Results
+
+- `backgrounds.catFarewell` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.schoolyardTree.png`
+- `backgrounds.classroomAfterExam` - normalized - 1770x889 (1.991) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.classroomAfterExam.png`
+- `backgrounds.classroomFight` - normalized - 1890x832 (2.2716) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.classroomFight.png`
+- `backgrounds.classroomFirstDay` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.classroomMorningTalk.png`
+- `backgrounds.cloudyClassroom` - normalized - 1635x962 (1.6996) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.cloudyClassroom.png`
+- `backgrounds.columbarium` - normalized - 1774x887 (2) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.columbarium.png`
+- `backgrounds.cornerStore` - normalized - 1888x833 (2.2665) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.cornerStoreNight.png`
+- `backgrounds.counselingRoom` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.counselingRoom.png`
+- `backgrounds.crowdedClassroom` - normalized - 1774x887 (2) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.crowdedClassroom.png`
+- `backgrounds.darkRoomWindow` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.darkRoomWindow.png`
+- `backgrounds.dohyeHouseStreet` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.missingPosterStreet.png`
+- `backgrounds.emptyClassroomEvening` - normalized - 1635x962 (1.6996) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.emptyClassroomEvening.png`
+- `backgrounds.emptyHospitalRoom` - normalized - 1770x889 (1.991) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.emptyHospitalRoom.png`
+- `backgrounds.hospital` - normalized - 1770x889 (1.991) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.hospitalHallway.png`
+- `backgrounds.hospitalStreet` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.hospitalExit.png`
+- `backgrounds.hotSummerHallway` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.hotSummerHallway.png`
+- `backgrounds.morningSchoolRoad` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.morningSchoolRoad.png`
+- `backgrounds.neglectedHouse` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.trashHouse.png`
+- `backgrounds.nightAlley` - normalized - 1635x962 (1.6996) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.catAlleyNight.png`
+- `backgrounds.nurseRoom` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.nurseRoom.png`
+- `backgrounds.playground` - normalized - 1890x832 (2.2716) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.schoolyardFootball.png`
+- `backgrounds.polarisEnding` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.starNightSchoolyard.png`
+- `backgrounds.quietRooftopNight` - normalized - 1890x832 (2.2716) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.quietRooftopNight.png`
+- `backgrounds.rainyCrosswalkMemory` - normalized - 1635x962 (1.6996) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.rainyCrosswalkMemory.png`
+- `backgrounds.rooftopSky` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.rooftopSky.png`
+- `backgrounds.rooftopStairs` - normalized - 1637x961 (1.7034) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.rooftopStairs.png`
+- `backgrounds.rooftopSunset` - normalized - 2172x724 (3) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.rooftopSunset.png`
+- `backgrounds.schoolHallway` - normalized - 2046x769 (2.6606) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.schoolHallwayConflict.png`
+- `backgrounds.schoolyardSunsetEmpty` - normalized - 1770x889 (1.991) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.schoolyardSunsetEmpty.png`
+- `backgrounds.starNight` - normalized - 1600x1000 (1.6) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/star-night.png`
+- `backgrounds.wayHome` - normalized - 1915x821 (2.3325) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/backgrounds/backgrounds.afterSchoolRoad.png`
+- `endings.defaultGaze` - normalized - 1770x889 (1.991) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/endings/endings.defaultGaze.png`
+- `endings.hastyGaze` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/endings/endings.hastyGaze.png`
+- `endings.lateHeart` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/endings/endings.lateHeart.png`
+- `endings.polarisTogether` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/endings/endings.polarisTogether.png`
+- `endings.safeObserver` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/endings/endings.safeObserver.png`
+- `endings.slowResee` - normalized - 2167x725 (2.989) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/endings/endings.slowResee.png`
+- `illustrations.catFarewell` - normalized - 1633x963 (1.6957) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/illustrations/illustrations.catFarewell.png`
+- `illustrations.dohyeDeadCat` - normalized - 2172x724 (3) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/illustrations/illustrations.dohyeDeadCat.png`
+- `illustrations.dohyeHospital` - normalized - 1636x961 (1.7024) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/illustrations/illustrations.dohyeHospital.png`
+- `illustrations.emptyDohyeHospital` - normalized - 1635x962 (1.6996) -> 2040x600 (3.4) - 빈 침대, 빈 의자, 창문, 종이별이 함께 보이도록 중앙 기준 - `public/assets/illustrations/illustrations.emptyDohyeHospital.png`
+- `illustrations.missingPosterWalk` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/illustrations/illustrations.missingPosterWalk.png`
+- `illustrations.robberyMemory` - normalized - 1636x961 (1.7024) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/illustrations/illustrations.robberyMemory.png`
+- `illustrations.trashHouseVisit` - normalized - 1635x962 (1.6996) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/illustrations/illustrations.trashHouseVisit.png`
+- `illustrations.yulChainRope` - normalized - 1637x961 (1.7034) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/illustrations/illustrations.yulChainRope.png`
+- `illustrations.yulColumbariumVisit` - normalized - 1635x962 (1.6996) -> 2040x600 (3.4) - 안율, 꽃다발, 봉안함 벽면이 같이 보이도록 중앙 기준 - `public/assets/illustrations/illustrations.yulColumbariumVisit.png`
+- `illustrations.yulFatherAccident` - normalized - 1939x811 (2.3909) -> 2040x600 (3.4) - 어린 안율, 우산, 횡단보도, 신호등이 모두 남도록 중앙 기준 - `public/assets/illustrations/illustrations.yulFatherAccident.png`
+- `illustrations.yulFatherAccidentComfort` - normalized - 1635x962 (1.6996) -> 2040x600 (3.4) - 현재 안율과 어린 안율, 떨어진 우산이 함께 보이도록 중앙 기준 - `public/assets/illustrations/illustrations.yulFatherAccidentComfort.png`
+- `illustrations.yulHoldingPaperStar` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 안율의 얼굴과 손의 종이별, 빈 병실 분위기를 함께 보이도록 중앙 기준 - `public/assets/illustrations/illustrations.yulHoldingPaperStar.png`
+- `illustrations.yulPolarisGrowth` - normalized - 2313x680 (3.4015) -> 2040x600 (3.4) - 중앙 기준 - `public/assets/illustrations/illustrations.yulPolarisGrowth.png`

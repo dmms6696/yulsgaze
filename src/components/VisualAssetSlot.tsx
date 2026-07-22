@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { resolveAssetPath } from "../data/assetManifest";
-import { isKnownMissingAsset, markAssetMissing } from "../engine/assetLoading";
+import { isKnownMissingAsset, isPreloadedAsset, markAssetMissing, preloadAssetPaths } from "../engine/assetLoading";
 import type { SceneOverlay } from "../types/game";
 
 interface VisualAssetSlotProps {
@@ -35,15 +35,17 @@ export function VisualAssetSlot({
   const fallbackPath = resolveAssetPath(fallbackAssetKey);
   const initialPath = primaryPath && !isKnownMissingAsset(primaryPath) ? primaryPath : fallbackPath;
   const [activePath, setActivePath] = useState(initialPath);
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(() => isPreloadedAsset(initialPath));
   const objectPosition = useMemo(
     () => `${clampPercent(focalPoint.x)}% ${clampPercent(focalPoint.y)}%`,
     [focalPoint.x, focalPoint.y],
   );
 
   useEffect(() => {
-    setActivePath(primaryPath && !isKnownMissingAsset(primaryPath) ? primaryPath : fallbackPath);
-    setLoaded(false);
+    preloadAssetPaths([primaryPath, fallbackPath]);
+    const nextPath = primaryPath && !isKnownMissingAsset(primaryPath) ? primaryPath : fallbackPath;
+    setActivePath(nextPath);
+    setLoaded(isPreloadedAsset(nextPath));
   }, [primaryPath, fallbackPath]);
 
   return (
@@ -58,6 +60,9 @@ export function VisualAssetSlot({
           className={`visual-image ${loaded ? "loaded" : "pending"}`}
           src={activePath}
           alt={alt}
+          decoding="async"
+          fetchPriority="high"
+          loading="eager"
           style={{ objectPosition }}
           onLoad={() => setLoaded(true)}
           onError={() => {

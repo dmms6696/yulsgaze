@@ -1,8 +1,10 @@
 import type { ActNumber } from "../types/game";
 
-export const GAME_VERSION = 3;
+export const GAME_VERSION = 4;
 export const FIRST_EVENT_ID = "EVENT_01";
 export const ENDING_CHECK_EVENT_ID = "ENDING_CHECK";
+export const TOTAL_STORY_EVENTS = 37;
+export const TOTAL_EVENTS_WITH_ENDING_CHECK = 38;
 
 export const GAME_META = {
   title: "율의 시선: 북극성이 되기까지",

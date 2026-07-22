@@ -1,5 +1,5 @@
 import { EVENT_MAP, GAME_EVENTS } from "../data/events";
-import { ENDING_CHECK_EVENT_ID } from "../data/gameMeta";
+import { ENDING_CHECK_EVENT_ID, TOTAL_STORY_EVENTS } from "../data/gameMeta";
 import type { ChoiceResolution, GameChoice, GameEvent, GameState } from "../types/game";
 import { applyEffects } from "./effectEngine";
 import { determineEnding } from "./endingEngine";
@@ -26,7 +26,8 @@ export function getEventProgress(eventId: string) {
   if (index < 0) {
     return 0;
   }
-  return Math.round(((index + 1) / playableEvents.length) * 100);
+  const totalEvents = Math.max(TOTAL_STORY_EVENTS, playableEvents.length);
+  return Math.min(100, Math.round(((index + 1) / totalEvents) * 100));
 }
 
 export function getCurrentEvent(state: GameState): CurrentEventResult {

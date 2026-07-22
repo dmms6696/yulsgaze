@@ -1,92 +1,103 @@
 # Asset Audit
 
-- Manifest keys: 155
-- Used keys in source: 80
+- Manifest keys: 168
+- Used keys in source: 91
 - Missing manifest entries: 0
 - Used keys with missing files: 0
-- Used keys waiting for future files: 43
+- Used keys waiting for future files: 0
 
 ## Used Asset Keys
 
-- `actTransitions.act1` - ok - src/data/scenePresets.ts:161
-- `actTransitions.act2` - ok - src/data/scenePresets.ts:171
-- `actTransitions.act3` - ok - src/data/scenePresets.ts:181
-- `actTransitions.act4` - ok - src/data/scenePresets.ts:191
-- `backgrounds.act1Default` - ok - src/data/scenePresets.ts:162
-- `backgrounds.act2Default` - ok - src/data/scenePresets.ts:172
-- `backgrounds.act3Default` - ok - src/data/scenePresets.ts:182
-- `backgrounds.act4Default` - ok - src/data/scenePresets.ts:192
-- `backgrounds.afterSchoolRoad` - ok - src/data/events/act2.ts:431 - EVENT_15
-- `backgrounds.catAlleyNight` - ok - src/data/events/act1.ts:265 - EVENT_05
-- `backgrounds.catFarewell` - ok - src/data/scenePresets.ts:87
-- `backgrounds.classroomAfterExam` - ok - src/data/events/act2.ts:544 - EVENT_17
+- `actTransitions.act1` - ok - src/data/scenePresets.ts:160
+- `actTransitions.act2` - ok - src/data/scenePresets.ts:170
+- `actTransitions.act3` - ok - src/data/scenePresets.ts:180
+- `actTransitions.act4` - ok - src/data/scenePresets.ts:190
+- `backgrounds.act1Default` - ok - src/data/scenePresets.ts:161
+- `backgrounds.act2Default` - ok - src/data/scenePresets.ts:171
+- `backgrounds.act3Default` - ok - src/data/scenePresets.ts:181
+- `backgrounds.act4Default` - ok - src/data/scenePresets.ts:191
+- `backgrounds.afterSchoolRoad` - ok - src/data/events/act2.ts:493 - EVENT_15
+- `backgrounds.catAlleyNight` - ok - src/data/events/act1.ts:477 - EVENT_05
+- `backgrounds.catFarewell` - ok - src/data/scenePresets.ts:146
+- `backgrounds.classroomAfterExam` - ok - src/data/events/act2.ts:844 - EVENT_17
 - `backgrounds.classroomFight` - ok - src/data/events/act2.ts:141 - EVENT_10
-- `backgrounds.classroomFirstDay` - ok - src/data/scenePresets.ts:124
+- `backgrounds.classroomFirstDay` - ok - src/data/scenePresets.ts:123
+- `backgrounds.classroomMorningTalk` - ok - src/data/events/act1.ts:264 - EVENT_29
 - `backgrounds.cloudyClassroom` - ok - src/data/events/act2.ts:202 - EVENT_11
-- `backgrounds.columbarium` - ok - src/data/scenePresets.ts:95
-- `backgrounds.commonDefault` - ok - src/engine/visualEngine.ts:46
-- `backgrounds.cornerStore` - ok - src/data/scenePresets.ts:135
+- `backgrounds.columbarium` - ok - src/data/events/act3.ts:470 - EVENT_36
+- `backgrounds.commonDefault` - ok - src/engine/visualEngine.ts:52
+- `backgrounds.cornerStore` - ok - src/data/scenePresets.ts:134
 - `backgrounds.cornerStoreNight` - ok - src/data/events/act2.ts:14 - EVENT_08
-- `backgrounds.counselingRoom` - ok - src/data/events/act3.ts:348 - EVENT_23
-- `backgrounds.crowdedClassroom` - ok - src/data/events/act2.ts:488 - EVENT_16
-- `backgrounds.darkRoomWindow` - ok - src/data/events/act3.ts:222 - EVENT_21
-- `backgrounds.hospitalExit` - ok - src/data/events/act2.ts:370 - EVENT_14
-- `backgrounds.missingPosterStreet` - ok - src/data/events/act4.ts:146 - EVENT_26
-- `backgrounds.nurseRoom` - ok - src/data/events/act2.ts:313 - EVENT_13
-- `backgrounds.polarisEnding` - ok - src/components/EndingScreen.tsx:28
+- `backgrounds.counselingRoom` - ok - src/data/events/act3.ts:413 - EVENT_23
+- `backgrounds.crowdedClassroom` - ok - src/data/events/act2.ts:615 - EVENT_33
+- `backgrounds.darkRoomWindow` - ok - src/data/events/act3.ts:287 - EVENT_21
+- `backgrounds.emptyClassroomEvening` - ok - src/data/events/act2.ts:313 - EVENT_31
+- `backgrounds.emptyHospitalRoom` - ok - src/data/events/act4.ts:87 - EVENT_37
+- `backgrounds.hospitalExit` - ok - src/data/events/act2.ts:432 - EVENT_14
+- `backgrounds.hospitalHallway` - ok - src/data/events/act4.ts:109 - EVENT_37
+- `backgrounds.hotSummerHallway` - ok - src/data/events/act1.ts:338 - EVENT_30
+- `backgrounds.missingPosterStreet` - ok - src/data/events/act4.ts:214 - EVENT_26
+- `backgrounds.morningSchoolRoad` - ok - src/data/events/act1.ts:205 - EVENT_28
+- `backgrounds.nurseRoom` - ok - src/data/events/act2.ts:375 - EVENT_13
+- `backgrounds.polarisEnding` - ok - src/data/scenePresets.ts:151
 - `backgrounds.quietRooftopNight` - ok - src/data/events/act3.ts:164 - EVENT_20
-- `backgrounds.rainyRoad` - ok - src/data/scenePresets.ts:126
+- `backgrounds.rainyCrosswalkMemory` - ok - src/data/events/act3.ts:222 - EVENT_35
+- `backgrounds.rainyRoad` - ok - src/data/scenePresets.ts:125
 - `backgrounds.rooftopSky` - ok - src/data/events/act1.ts:86 - EVENT_02
-- `backgrounds.rooftopStairs` - ok - src/data/events/act1.ts:324 - EVENT_06
-- `backgrounds.rooftopSunset` - ok - src/data/events/act1.ts:389 - EVENT_07
-- `backgrounds.schoolHallway` - ok - src/data/scenePresets.ts:133
+- `backgrounds.rooftopStairs` - ok - src/data/events/act1.ts:536 - EVENT_06
+- `backgrounds.rooftopSunset` - ok - src/data/events/act1.ts:601 - EVENT_07
+- `backgrounds.schoolHallway` - ok - src/data/scenePresets.ts:132
 - `backgrounds.schoolHallwayConflict` - ok - src/data/events/act2.ts:65 - EVENT_08
-- `backgrounds.schoolyardFootball` - ok - src/data/events/act1.ts:205 - EVENT_04
+- `backgrounds.schoolyardFootball` - ok - src/data/events/act1.ts:417 - EVENT_04
+- `backgrounds.schoolyardSunsetEmpty` - ok - src/data/events/act2.ts:765 - EVENT_34
 - `backgrounds.schoolyardTree` - ok - src/data/events/act1.ts:14 - EVENT_01
 - `backgrounds.starNight` - ok - src/data/scenePresets.ts:33
-- `backgrounds.starNightSchoolyard` - ok - src/data/events/act4.ts:209 - EVENT_27
-- `backgrounds.trashHouse` - ok - src/data/events/act4.ts:87 - EVENT_25
-- `endings.defaultGaze` - ok - src/data/endings.ts:213
-- `endings.hastyGaze` - ok - src/data/endings.ts:159
-- `endings.lateHeart` - ok - src/data/endings.ts:189
-- `endings.polarisTogether` - ok - src/data/endings.ts:67
-- `endings.safeObserver` - ok - src/data/endings.ts:135
-- `endings.slowResee` - ok - src/data/endings.ts:103
+- `backgrounds.starNightSchoolyard` - ok - src/components/EndingScreen.tsx:28
+- `backgrounds.trashHouse` - ok - src/data/events/act4.ts:155 - EVENT_25
+- `endings.defaultGaze` - ok - src/data/endings.ts:248
+- `endings.hastyGaze` - ok - src/data/endings.ts:194
+- `endings.lateHeart` - ok - src/data/endings.ts:224
+- `endings.polarisTogether` - ok - src/data/endings.ts:99
+- `endings.safeObserver` - ok - src/data/endings.ts:170
+- `endings.slowResee` - ok - src/data/endings.ts:135
 - `illustrations.catFarewell` - ok - src/data/events/act3.ts:86 - EVENT_19
-- `illustrations.columbariumTalk` - ok - src/data/scenePresets.ts:96
 - `illustrations.dohyeDeadCat` - ok - src/data/events/act3.ts:15 - EVENT_18
 - `illustrations.dohyeHospital` - ok - src/data/events/act4.ts:16 - EVENT_24
-- `illustrations.missingPosterWalk` - ok - src/data/events/act4.ts:147 - EVENT_26
-- `illustrations.polarisPromise` - ok - src/data/scenePresets.ts:117
-- `illustrations.robberyMemory` - ok - src/data/events/act3.ts:286 - EVENT_22
-- `illustrations.trashHouseVisit` - ok - src/data/events/act4.ts:88 - EVENT_25
-- `illustrations.yulChainRope` - ok - src/data/events/act3.ts:223 - EVENT_21
-- `illustrations.yulPolarisGrowth` - ok - src/data/events/act4.ts:210 - EVENT_27
+- `illustrations.emptyDohyeHospital` - ok - src/data/events/act4.ts:88 - EVENT_37
+- `illustrations.missingPosterWalk` - ok - src/data/events/act4.ts:215 - EVENT_26
+- `illustrations.robberyMemory` - ok - src/data/events/act3.ts:351 - EVENT_22
+- `illustrations.trashHouseVisit` - ok - src/data/events/act4.ts:156 - EVENT_25
+- `illustrations.yulChainRope` - ok - src/data/events/act3.ts:288 - EVENT_21
+- `illustrations.yulColumbariumVisit` - ok - src/data/events/act3.ts:471 - EVENT_36
+- `illustrations.yulFatherAccident` - ok - src/data/events/act3.ts:223 - EVENT_35
+- `illustrations.yulFatherAccidentComfort` - ok - src/data/events/act3.ts:243 - EVENT_35
+- `illustrations.yulHoldingPaperStar` - ok - src/data/events/act4.ts:127 - EVENT_37
+- `illustrations.yulPolarisGrowth` - ok - src/data/events/act4.ts:278 - EVENT_27
 - `props.bag` - ok - src/data/events/act2.ts:85 - EVENT_09
-- `props.cast` - ok - src/data/events/act2.ts:315 - EVENT_13
-- `props.cat` - ok - src/data/events/act1.ts:267 - EVENT_05
-- `props.chair` - ok - src/data/events/act3.ts:350 - EVENT_23
-- `props.crutch` - ok - src/data/events/act2.ts:376 - EVENT_14
+- `props.cast` - ok - src/data/events/act2.ts:377 - EVENT_13
+- `props.cat` - ok - src/data/events/act1.ts:479 - EVENT_05
+- `props.chair` - ok - src/data/events/act3.ts:415 - EVENT_23
+- `props.crutch` - ok - src/data/events/act2.ts:438 - EVENT_14
 - `props.flowers` - ok - src/data/events/act3.ts:88 - EVENT_19
-- `props.flyer` - ok - src/data/events/act4.ts:168 - EVENT_26
+- `props.flyer` - ok - src/data/events/act4.ts:236 - EVENT_26
 - `props.hospitalBed` - ok - src/data/events/act4.ts:18 - EVENT_24
-- `props.icePack` - ok - src/data/events/act2.ts:315 - EVENT_13
-- `props.missingPoster` - ok - src/data/events/act4.ts:153 - EVENT_26
+- `props.icePack` - ok - src/data/events/act2.ts:377 - EVENT_13
+- `props.missingPoster` - ok - src/data/events/act4.ts:221 - EVENT_26
 - `props.note` - ok - src/data/events/act2.ts:204 - EVENT_11
-- `props.pencil` - ok - src/data/events/act1.ts:326 - EVENT_06
+- `props.pencil` - ok - src/data/events/act1.ts:538 - EVENT_06
 - `props.phone` - ok - src/data/events/act3.ts:52 - EVENT_18
 - `props.polaris` - ok - src/data/events/act1.ts:160 - EVENT_03
-- `props.ropeShadow` - ok - src/data/events/act3.ts:225 - EVENT_21
+- `props.ropeShadow` - ok - src/data/events/act3.ts:290 - EVENT_21
 - `props.sleeve` - ok - src/data/events/act3.ts:166 - EVENT_20
-- `props.snack` - ok - src/data/events/act2.ts:546 - EVENT_17
-- `props.soccerBall` - ok - src/data/events/act1.ts:207 - EVENT_04
-- `props.storyNotebook` - ok - src/data/events/act1.ts:326 - EVENT_06
+- `props.snack` - ok - src/data/events/act2.ts:846 - EVENT_17
+- `props.soccerBall` - ok - src/data/events/act1.ts:419 - EVENT_04
+- `props.storyNotebook` - ok - src/data/events/act1.ts:538 - EVENT_06
 - `props.teacherDoor` - ok - src/data/events/act2.ts:161 - EVENT_10
 - `props.tissue` - ok - src/data/events/act2.ts:85 - EVENT_09
-- `props.tunaCan` - ok - src/data/events/act1.ts:267 - EVENT_05
+- `props.tunaCan` - ok - src/data/events/act1.ts:479 - EVENT_05
 - `props.umbrella` - ok - src/data/scenePresets.ts:55
 - `props.waterBottle` - ok - src/data/events/act1.ts:19 - EVENT_01
-- `props.windowLight` - ok - src/data/events/act3.ts:390 - EVENT_23
+- `props.windowLight` - ok - src/data/events/act3.ts:455 - EVENT_23
 - `title.main` - ok - src/data/scenePresets.ts:32
 
 ## Missing Manifest Entries
@@ -99,57 +110,18 @@
 
 ## Used Keys Waiting For Future Files
 
-- `actTransitions.act1`
-- `actTransitions.act2`
-- `actTransitions.act3`
-- `actTransitions.act4`
-- `backgrounds.act1Default`
-- `backgrounds.act2Default`
-- `backgrounds.act3Default`
-- `backgrounds.act4Default`
-- `backgrounds.catFarewell`
-- `backgrounds.classroomFirstDay`
-- `backgrounds.columbarium`
-- `backgrounds.commonDefault`
-- `backgrounds.cornerStore`
-- `backgrounds.polarisEnding`
-- `backgrounds.rainyRoad`
-- `backgrounds.schoolHallway`
-- `illustrations.columbariumTalk`
-- `illustrations.polarisPromise`
-- `props.bag`
-- `props.cast`
-- `props.cat`
-- `props.chair`
-- `props.crutch`
-- `props.flowers`
-- `props.flyer`
-- `props.hospitalBed`
-- `props.icePack`
-- `props.missingPoster`
-- `props.note`
-- `props.pencil`
-- `props.phone`
-- `props.polaris`
-- `props.ropeShadow`
-- `props.sleeve`
-- `props.snack`
-- `props.soccerBall`
-- `props.storyNotebook`
-- `props.teacherDoor`
-- `props.tissue`
-- `props.tunaCan`
-- `props.umbrella`
-- `props.waterBottle`
-- `props.windowLight`
+- None.
 
 ## Event Usage
 
-- src/components/EndingScreen.tsx: backgrounds.polarisEnding
+- src/components/EndingScreen.tsx: backgrounds.starNightSchoolyard
 - src/data/endings.ts: endings.defaultGaze, endings.hastyGaze, endings.lateHeart, endings.polarisTogether, endings.safeObserver, endings.slowResee
 - EVENT_01: backgrounds.schoolyardTree, props.waterBottle
 - EVENT_02: backgrounds.rooftopSky
 - EVENT_03: backgrounds.rooftopSky, props.polaris
+- EVENT_28: backgrounds.morningSchoolRoad
+- EVENT_29: backgrounds.classroomMorningTalk
+- EVENT_30: backgrounds.hotSummerHallway
 - EVENT_04: backgrounds.schoolyardFootball, props.soccerBall
 - EVENT_05: backgrounds.catAlleyNight, props.cat, props.tunaCan
 - EVENT_06: backgrounds.rooftopStairs, props.pencil, props.storyNotebook
@@ -159,22 +131,29 @@
 - EVENT_10: backgrounds.classroomFight, props.teacherDoor
 - EVENT_11: backgrounds.cloudyClassroom, props.note
 - EVENT_12: backgrounds.schoolHallwayConflict
+- EVENT_31: backgrounds.emptyClassroomEvening
 - EVENT_13: backgrounds.nurseRoom, props.cast, props.icePack, props.teacherDoor
 - EVENT_14: backgrounds.hospitalExit, props.cast, props.crutch
 - EVENT_15: backgrounds.afterSchoolRoad, props.crutch, props.soccerBall
+- EVENT_32: backgrounds.afterSchoolRoad
+- EVENT_33: backgrounds.crowdedClassroom
 - EVENT_16: backgrounds.crowdedClassroom, backgrounds.schoolHallwayConflict
+- EVENT_34: backgrounds.schoolyardSunsetEmpty
 - EVENT_17: backgrounds.classroomAfterExam, props.note, props.snack
 - EVENT_18: backgrounds.catAlleyNight, illustrations.dohyeDeadCat, props.phone
 - EVENT_19: backgrounds.rooftopSunset, illustrations.catFarewell, props.flowers
 - EVENT_20: backgrounds.quietRooftopNight, props.sleeve
+- EVENT_35: backgrounds.rainyCrosswalkMemory, illustrations.yulFatherAccident, illustrations.yulFatherAccidentComfort
 - EVENT_21: backgrounds.darkRoomWindow, illustrations.yulChainRope, props.ropeShadow
 - EVENT_22: illustrations.robberyMemory
 - EVENT_23: backgrounds.counselingRoom, props.chair, props.windowLight
+- EVENT_36: backgrounds.columbarium, illustrations.yulColumbariumVisit
 - EVENT_24: backgrounds.nurseRoom, illustrations.dohyeHospital, props.chair, props.hospitalBed, props.storyNotebook
+- EVENT_37: backgrounds.emptyHospitalRoom, backgrounds.hospitalHallway, illustrations.emptyDohyeHospital, illustrations.yulHoldingPaperStar
 - EVENT_25: backgrounds.trashHouse, illustrations.trashHouseVisit, props.windowLight
 - EVENT_26: backgrounds.missingPosterStreet, illustrations.missingPosterWalk, props.flyer, props.missingPoster
 - EVENT_27: backgrounds.starNightSchoolyard, illustrations.yulPolarisGrowth, props.polaris
-- src/data/scenePresets.ts: actTransitions.act1, actTransitions.act2, actTransitions.act3, actTransitions.act4, backgrounds.act1Default, backgrounds.act2Default, backgrounds.act3Default, backgrounds.act4Default, backgrounds.afterSchoolRoad, backgrounds.catAlleyNight, backgrounds.catFarewell, backgrounds.classroomAfterExam, backgrounds.classroomFight, backgrounds.classroomFirstDay, backgrounds.cloudyClassroom, backgrounds.columbarium, backgrounds.cornerStore, backgrounds.cornerStoreNight, backgrounds.counselingRoom, backgrounds.crowdedClassroom, backgrounds.darkRoomWindow, backgrounds.hospitalExit, backgrounds.missingPosterStreet, backgrounds.nurseRoom, backgrounds.polarisEnding, backgrounds.quietRooftopNight, backgrounds.rainyRoad, backgrounds.rooftopSky, backgrounds.rooftopStairs, backgrounds.rooftopSunset, backgrounds.schoolHallway, backgrounds.schoolHallwayConflict, backgrounds.schoolyardFootball, backgrounds.schoolyardTree, backgrounds.starNight, backgrounds.starNightSchoolyard, backgrounds.trashHouse, illustrations.catFarewell, illustrations.columbariumTalk, illustrations.polarisPromise, props.cast, props.cat, props.missingPoster, props.polaris, props.tunaCan, props.umbrella, title.main
+- src/data/scenePresets.ts: actTransitions.act1, actTransitions.act2, actTransitions.act3, actTransitions.act4, backgrounds.act1Default, backgrounds.act2Default, backgrounds.act3Default, backgrounds.act4Default, backgrounds.afterSchoolRoad, backgrounds.catAlleyNight, backgrounds.catFarewell, backgrounds.classroomAfterExam, backgrounds.classroomFight, backgrounds.classroomFirstDay, backgrounds.cloudyClassroom, backgrounds.columbarium, backgrounds.cornerStore, backgrounds.cornerStoreNight, backgrounds.counselingRoom, backgrounds.crowdedClassroom, backgrounds.darkRoomWindow, backgrounds.hospitalExit, backgrounds.missingPosterStreet, backgrounds.nurseRoom, backgrounds.polarisEnding, backgrounds.quietRooftopNight, backgrounds.rainyRoad, backgrounds.rooftopSky, backgrounds.rooftopStairs, backgrounds.rooftopSunset, backgrounds.schoolHallway, backgrounds.schoolHallwayConflict, backgrounds.schoolyardFootball, backgrounds.schoolyardTree, backgrounds.starNight, backgrounds.starNightSchoolyard, backgrounds.trashHouse, illustrations.catFarewell, illustrations.yulColumbariumVisit, illustrations.yulPolarisGrowth, props.cast, props.missingPoster, props.polaris, props.tunaCan, props.umbrella, title.main
 - src/engine/visualEngine.ts: backgrounds.commonDefault
 
 ## Manifest Keys Not Used Directly Yet
@@ -242,8 +221,10 @@
 - `characters.yulMother.neutral`
 - `characters.yulMother.silhouette`
 - `characters.yulMother.softened`
+- `illustrations.columbariumTalk`
 - `illustrations.hallwayFight`
 - `illustrations.missingPosters`
+- `illustrations.polarisPromise`
 - `illustrations.rainyUmbrella`
 - `illustrations.rooftopSilence`
 - `illustrations.rumorCircle`

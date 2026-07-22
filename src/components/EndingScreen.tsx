@@ -25,7 +25,7 @@ export function EndingScreen({ state, onRestart }: EndingScreenProps) {
       <section className="ending-card">
         <VisualAssetSlot
           assetKey={ending.imageAsset}
-          fallbackAssetKey="backgrounds.polarisEnding"
+          fallbackAssetKey="backgrounds.starNightSchoolyard"
           title={ending.title}
           kicker="엔딩 이미지 슬롯"
           alt={`${ending.title} 결말 이미지`}

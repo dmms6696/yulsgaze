@@ -7,9 +7,10 @@ import { HelpModal } from "./components/HelpModal";
 import { OrientationGate } from "./components/OrientationGate";
 import { StartScreen } from "./components/StartScreen";
 import { EVENT_MAP } from "./data/events";
-import { preloadAssetPaths } from "./engine/assetLoading";
+import { preloadAssetPaths, warmupAssetPaths } from "./engine/assetLoading";
 import { getCurrentEvent, choose, finalizeIfEndingCheck, getChoiceViews } from "./engine/gameEngine";
 import { clearSave, createInitialState, hasSavedGame, loadGame, saveGame } from "./engine/saveEngine";
+import { collectActTransitionWarmupPaths, collectStoryWarmupAssetPaths } from "./engine/storyAssetWarmup";
 import { collectActTransitionAssetPaths, collectEventAssetPaths, shouldShowActTransition } from "./engine/visualEngine";
 import type { ActNumber, ChoiceResolution, GameEvent, GameState } from "./types/game";
 
@@ -30,6 +31,19 @@ export default function App() {
   useEffect(() => {
     setSavedExists(hasSavedGame());
   }, []);
+
+  useEffect(() => {
+    if (isPortrait) {
+      return undefined;
+    }
+
+    preloadAssetPaths(collectActTransitionWarmupPaths(), { priority: "high" });
+    return warmupAssetPaths(collectStoryWarmupAssetPaths(), {
+      concurrency: 2,
+      delayMs: 900,
+      priority: "low",
+    });
+  }, [isPortrait]);
 
   useEffect(() => {
     const orientation = window.matchMedia("(orientation: portrait)");
@@ -90,7 +104,7 @@ export default function App() {
         }
       }
     });
-    preloadAssetPaths(Array.from(paths));
+    preloadAssetPaths(Array.from(paths), { priority: "high" });
   }, [current, dismissedActIntros, gameState, pendingResolution]);
 
   function startGame(playerName: string) {

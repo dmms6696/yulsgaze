@@ -42,7 +42,7 @@ export function VisualAssetSlot({
   );
 
   useEffect(() => {
-    preloadAssetPaths([primaryPath, fallbackPath]);
+    preloadAssetPaths([primaryPath, fallbackPath], { priority: "high" });
     const nextPath = primaryPath && !isKnownMissingAsset(primaryPath) ? primaryPath : fallbackPath;
     setActivePath(nextPath);
     setLoaded(isPreloadedAsset(nextPath));

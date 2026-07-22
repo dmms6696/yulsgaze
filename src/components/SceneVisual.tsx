@@ -222,7 +222,7 @@ export function SceneVisual({ event, visualOverride }: SceneVisualProps) {
   const preloadKey = preloadPaths.join("|");
 
   useEffect(() => {
-    preloadAssetPaths(preloadPaths);
+    preloadAssetPaths(preloadPaths, { priority: "high" });
   }, [preloadKey]);
 
   const shouldRenderBackground = !dedicatedIllustration;

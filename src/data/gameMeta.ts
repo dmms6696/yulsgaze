@@ -1,6 +1,6 @@
 import type { ActNumber } from "../types/game";
 
-export const GAME_VERSION = 2;
+export const GAME_VERSION = 3;
 export const FIRST_EVENT_ID = "EVENT_01";
 export const ENDING_CHECK_EVENT_ID = "ENDING_CHECK";
 

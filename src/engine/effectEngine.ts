@@ -14,6 +14,18 @@ const RELATION_LABELS: Record<keyof RelationStats, string> = {
 
 const CHARACTER_IDS = new Set(CHARACTERS.map((character) => character.id));
 
+function rebalanceDelta(delta: number, target: "stat" | "relation") {
+  if (!delta) {
+    return 0;
+  }
+
+  const magnitude = Math.abs(delta);
+  const multiplier = target === "stat" ? 1.5 : 1.35;
+  const boostedMagnitude = Math.ceil(magnitude * multiplier);
+  const cap = target === "stat" ? 6 : 18;
+  return Math.sign(delta) * Math.min(boostedMagnitude, cap);
+}
+
 export function applyEffects(state: GameState, effects?: GameEffects) {
   const nextState: GameState = {
     ...state,
@@ -33,7 +45,8 @@ export function applyEffects(state: GameState, effects?: GameEffects) {
         return;
       }
       const before = nextState.stats[statKey];
-      const after = clamp(before + delta);
+      const adjustedDelta = rebalanceDelta(delta, "stat");
+      const after = clamp(before + adjustedDelta);
       nextState.stats[statKey] = after;
       if (after !== before) {
         changes.push({
@@ -60,7 +73,8 @@ export function applyEffects(state: GameState, effects?: GameEffects) {
           return;
         }
         const before = relation[relationKey];
-        const after = clamp(before + delta);
+        const adjustedDelta = rebalanceDelta(delta, "relation");
+        const after = clamp(before + adjustedDelta);
         relation[relationKey] = after;
         if (after !== before) {
           const deltaLabel = formatDelta(after - before);

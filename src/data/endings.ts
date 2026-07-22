@@ -1,4 +1,62 @@
-import type { Ending } from "../types/game";
+import type { Ending, FlagId } from "../types/game";
+
+const BRIDGE_FLAGS: FlagId[] = [
+  "accepted_polaris",
+  "asked_polaris_meaning",
+  "supported_writing",
+  "promised_second_reader",
+  "kept_jinuk_secret",
+  "protected_jinuk_secret",
+  "understood_jimin",
+  "offered_to_listen",
+  "defended_yul",
+  "helped_hospital",
+  "waited_for_jinuk",
+  "heard_jinuk_dream",
+  "encouraged_jinuk",
+  "noticed_yul_discomfort",
+  "helped_reconcile",
+  "centered_apology",
+  "stayed_with_pain",
+  "sought_adult_help_for_abuse",
+  "helped_yul_accept",
+  "understood_yul_fear",
+  "sought_better_help",
+  "read_story_to_dohye",
+  "promised_shared_search",
+  "understood_persistence",
+  "searched_for_dohye",
+  "organized_search",
+  "saw_yul_change",
+  "named_yul_change",
+];
+
+const YUL_RESEE_FLAGS: FlagId[] = [
+  "noticed_yul_discomfort",
+  "helped_yul_accept",
+  "understood_yul_fear",
+  "saw_yul_change",
+  "named_yul_change",
+];
+
+const HASTY_FLAGS: FlagId[] = [
+  "misjudged_dohye",
+  "suspected_yul",
+  "spread_jinuk_secret",
+  "mocked_jimin",
+  "judged_yul_coward",
+  "missed_yul_change",
+];
+
+const WITHDRAWAL_FLAGS: FlagId[] = [
+  "watched_fight",
+  "avoided_hospital",
+  "left_hospital",
+  "stepped_back_from_pain",
+  "avoided_dark_question",
+  "doubted_meaning",
+  "doubted_search",
+];
 
 export const ENDINGS: Ending[] = [
   {
@@ -8,24 +66,27 @@ export const ENDINGS: Ending[] = [
     priority: 100,
     imageAsset: "endings.polarisTogether",
     condition: {
-      statsMin: { sight: 42, care: 40 },
+      statsMin: { sight: 42, care: 42 },
       relationMin: {
-        yul: { trust: 48 },
-        dohye: { trust: 34 },
+        yul: { trust: 50 },
+        dohye: { trust: 36 },
       },
       minFlagMatches: {
-        flags: [
-          "accepted_polaris",
-          "supported_writing",
-          "kept_jinuk_secret",
-          "stayed_with_pain",
-          "helped_yul_accept",
-          "searched_for_dohye",
-          "named_yul_change",
-          "saw_yul_change",
-        ],
-        count: 5,
+        flags: BRIDGE_FLAGS,
+        count: 9,
       },
+      maxFlagMatches: {
+        flags: HASTY_FLAGS,
+        count: 1,
+      },
+      allOf: [
+        {
+          maxFlagMatches: {
+            flags: WITHDRAWAL_FLAGS,
+            count: 1,
+          },
+        },
+      ],
     },
     summary: [
       "당신은 누군가를 쉽게 단정하지 않는 법을 배웠다.",
@@ -38,14 +99,26 @@ export const ENDINGS: Ending[] = [
     id: "ENDING_SLOW_RESEE",
     title: "천천히 다시 보기",
     subtitle: "중간 이상 엔딩",
-    priority: 80,
+    priority: 78,
     imageAsset: "endings.slowResee",
     condition: {
-      statsMin: { sight: 30, care: 25 },
-      relationMax: {
-        yul: { guard: 58 },
+      statsMin: { sight: 28, care: 24 },
+      relationMin: {
+        yul: { trust: 30 },
       },
-      anyFlags: ["noticed_yul_discomfort", "helped_yul_accept", "saw_yul_change", "named_yul_change"],
+      anyFlags: YUL_RESEE_FLAGS,
+      maxFlagMatches: {
+        flags: HASTY_FLAGS,
+        count: 2,
+      },
+      allOf: [
+        {
+          maxFlagMatches: {
+            flags: WITHDRAWAL_FLAGS,
+            count: 1,
+          },
+        },
+      ],
     },
     summary: [
       "당신은 안율을 처음 본 모습으로만 기억하지 않게 되었다.",
@@ -58,12 +131,16 @@ export const ENDINGS: Ending[] = [
     id: "ENDING_SAFE_OBSERVER",
     title: "안전한 방관자",
     subtitle: "방관 엔딩",
-    priority: 70,
+    priority: 65,
     imageAsset: "endings.safeObserver",
     condition: {
-      statsMax: { courage: 20 },
+      statsMax: { courage: 28 },
       minFlagMatches: {
-        flags: ["watched_fight", "avoided_hospital", "left_hospital", "stepped_back_from_pain"],
+        flags: WITHDRAWAL_FLAGS,
+        count: 2,
+      },
+      maxFlagMatches: {
+        flags: HASTY_FLAGS,
         count: 2,
       },
     },
@@ -78,21 +155,24 @@ export const ENDINGS: Ending[] = [
     id: "ENDING_HASTY_GAZE",
     title: "성급한 시선",
     subtitle: "나쁜 엔딩",
-    priority: 60,
+    priority: 70,
     imageAsset: "endings.hastyGaze",
     condition: {
-      statsMax: { sight: 18 },
-      minFlagMatches: {
-        flags: [
-          "misjudged_dohye",
-          "suspected_yul",
-          "spread_jinuk_secret",
-          "mocked_jimin",
-          "judged_yul_coward",
-          "missed_yul_change",
-        ],
-        count: 2,
-      },
+      anyOf: [
+        {
+          statsMax: { sight: 16 },
+          minFlagMatches: {
+            flags: HASTY_FLAGS,
+            count: 2,
+          },
+        },
+        {
+          minFlagMatches: {
+            flags: HASTY_FLAGS,
+            count: 3,
+          },
+        },
+      ],
     },
     summary: [
       "당신은 소문과 첫인상을 사실처럼 받아들였다.",
@@ -108,12 +188,15 @@ export const ENDINGS: Ending[] = [
     priority: 50,
     imageAsset: "endings.lateHeart",
     condition: {
-      statsMin: { sight: 25 },
-      relationMin: {
-        dohye: { trust: 20 },
-      },
       requiredFlags: ["searched_for_dohye"],
-      forbiddenFlags: ["organized_search", "named_yul_change"],
+      anyOf: [
+        { statsMin: { sight: 24, care: 24 } },
+        { relationMin: { dohye: { trust: 22 } } },
+      ],
+      maxFlagMatches: {
+        flags: HASTY_FLAGS,
+        count: 2,
+      },
     },
     summary: [
       "당신은 이도해를 찾는 길에 함께 섰다.",

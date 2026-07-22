@@ -46,13 +46,13 @@ export const CHARACTERS: CharacterDefinition[] = [
 ];
 
 export const INITIAL_RELATIONS: RelationMap = {
-  yul: { closeness: 15, trust: 15, guard: 55 },
-  dohye: { closeness: 10, trust: 10, guard: 70 },
-  jinuk: { closeness: 50, trust: 25, guard: 25 },
-  minwoo: { closeness: 15, trust: 10, guard: 35 },
+  yul: { closeness: 18, trust: 18, guard: 50 },
+  dohye: { closeness: 14, trust: 14, guard: 64 },
+  jinuk: { closeness: 50, trust: 28, guard: 24 },
+  minwoo: { closeness: 15, trust: 12, guard: 35 },
   donghwi: { closeness: 35, trust: 25, guard: 15 },
-  jimin: { closeness: 40, trust: 40, guard: 40 },
-  classmates: { closeness: 30, trust: 25, guard: 20 },
+  jimin: { closeness: 40, trust: 38, guard: 40 },
+  classmates: { closeness: 30, trust: 26, guard: 20 },
 };
 
 export const VISUAL_CHARACTER_NAMES: Record<string, string> = {

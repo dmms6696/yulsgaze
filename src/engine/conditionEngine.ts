@@ -59,12 +59,20 @@ export function matchesCondition(state: GameState, condition?: GameCondition) {
     return true;
   }
 
-  const checks: boolean[] = [
-    checkStatsMin(state, condition.statsMin),
-    checkStatsMax(state, condition.statsMax),
-    checkRelationMin(state, condition.relationMin),
-    checkRelationMax(state, condition.relationMax),
-  ];
+  const checks: boolean[] = [];
+
+  if (condition.statsMin) {
+    checks.push(checkStatsMin(state, condition.statsMin));
+  }
+  if (condition.statsMax) {
+    checks.push(checkStatsMax(state, condition.statsMax));
+  }
+  if (condition.relationMin) {
+    checks.push(checkRelationMin(state, condition.relationMin));
+  }
+  if (condition.relationMax) {
+    checks.push(checkRelationMax(state, condition.relationMax));
+  }
 
   if (condition.requiredFlags) {
     checks.push(condition.requiredFlags.every((flag) => hasFlag(state, flag)));
@@ -78,6 +86,23 @@ export function matchesCondition(state: GameState, condition?: GameCondition) {
   if (condition.minFlagMatches) {
     const matchCount = condition.minFlagMatches.flags.filter((flag) => hasFlag(state, flag)).length;
     checks.push(matchCount >= condition.minFlagMatches.count);
+  }
+  if (condition.maxFlagMatches) {
+    const matchCount = condition.maxFlagMatches.flags.filter((flag) => hasFlag(state, flag)).length;
+    checks.push(matchCount <= condition.maxFlagMatches.count);
+  }
+  if (condition.allOf) {
+    checks.push(condition.allOf.every((childCondition) => matchesCondition(state, childCondition)));
+  }
+  if (condition.anyOf) {
+    checks.push(condition.anyOf.some((childCondition) => matchesCondition(state, childCondition)));
+  }
+  if (condition.not) {
+    checks.push(!matchesCondition(state, condition.not));
+  }
+
+  if (!checks.length) {
+    return true;
   }
 
   return condition.logic === "OR" ? checks.some(Boolean) : checks.every(Boolean);

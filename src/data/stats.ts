@@ -1,10 +1,10 @@
 import type { PlayerStats, StatDefinition } from "../types/game";
 
 export const INITIAL_PLAYER_STATS: PlayerStats = {
-  sight: 10,
-  courage: 10,
-  care: 10,
-  sincerity: 10,
+  sight: 12,
+  courage: 12,
+  care: 13,
+  sincerity: 12,
 };
 
 export const STAT_DEFINITIONS: StatDefinition[] = [

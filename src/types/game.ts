@@ -227,6 +227,13 @@ export interface GameCondition {
     flags: FlagId[];
     count: number;
   };
+  maxFlagMatches?: {
+    flags: FlagId[];
+    count: number;
+  };
+  allOf?: GameCondition[];
+  anyOf?: GameCondition[];
+  not?: GameCondition;
   logic?: "AND" | "OR";
 }
 

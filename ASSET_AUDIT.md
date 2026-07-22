@@ -4,7 +4,7 @@
 - Used keys in source: 80
 - Missing manifest entries: 0
 - Used keys with missing files: 0
-- Used keys waiting for future files: 57
+- Used keys waiting for future files: 49
 
 ## Used Asset Keys
 
@@ -46,12 +46,12 @@
 - `backgrounds.starNight` - ok - src/data/scenePresets.ts:33
 - `backgrounds.starNightSchoolyard` - ok - src/data/events/act4.ts:209 - EVENT_27
 - `backgrounds.trashHouse` - ok - src/data/events/act4.ts:87 - EVENT_25
-- `endings.defaultGaze` - ok - src/data/endings.ts:130
-- `endings.hastyGaze` - ok - src/data/endings.ts:82
-- `endings.lateHeart` - ok - src/data/endings.ts:109
-- `endings.polarisTogether` - ok - src/data/endings.ts:9
-- `endings.safeObserver` - ok - src/data/endings.ts:62
-- `endings.slowResee` - ok - src/data/endings.ts:42
+- `endings.defaultGaze` - ok - src/data/endings.ts:213
+- `endings.hastyGaze` - ok - src/data/endings.ts:159
+- `endings.lateHeart` - ok - src/data/endings.ts:189
+- `endings.polarisTogether` - ok - src/data/endings.ts:67
+- `endings.safeObserver` - ok - src/data/endings.ts:135
+- `endings.slowResee` - ok - src/data/endings.ts:103
 - `illustrations.catFarewell` - ok - src/data/events/act3.ts:86 - EVENT_19
 - `illustrations.columbariumTalk` - ok - src/data/scenePresets.ts:96
 - `illustrations.dohyeDeadCat` - ok - src/data/events/act3.ts:15 - EVENT_18
@@ -121,16 +121,8 @@
 - `endings.polarisTogether`
 - `endings.safeObserver`
 - `endings.slowResee`
-- `illustrations.catFarewell`
 - `illustrations.columbariumTalk`
-- `illustrations.dohyeDeadCat`
-- `illustrations.dohyeHospital`
-- `illustrations.missingPosterWalk`
 - `illustrations.polarisPromise`
-- `illustrations.robberyMemory`
-- `illustrations.trashHouseVisit`
-- `illustrations.yulChainRope`
-- `illustrations.yulPolarisGrowth`
 - `props.bag`
 - `props.cast`
 - `props.cat`

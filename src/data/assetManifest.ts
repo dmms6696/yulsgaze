@@ -8,7 +8,7 @@ const assetPath = (path: string) => `./assets/${path}`;
 
 export const ASSETS = {
   title: {
-    main: assetPath("title/yul-gaze-main.png"),
+    main: assetPath("title/yul-gaze-start-classroom.png"),
     classroomWindow: assetPath("title/classroom-window.webp"),
   },
   actTransitions: {

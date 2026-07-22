@@ -51,8 +51,7 @@ export function VisualAssetSlot({
       <div className="asset-placeholder">
         <p className="placeholder-kicker">{kicker}</p>
         <h2>{title}</h2>
-        {assetKey ? <p>{assetKey}</p> : null}
-        <span>이미지를 넣으면 이 영역에 자동 표시됩니다</span>
+        <span>장면 이미지 준비 중</span>
       </div>
       {activePath ? (
         <img

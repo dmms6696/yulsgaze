@@ -4,6 +4,7 @@ import { ConfirmModal } from "./components/ConfirmModal";
 import { EndingScreen } from "./components/EndingScreen";
 import { GameLayout } from "./components/GameLayout";
 import { HelpModal } from "./components/HelpModal";
+import { OrientationGate } from "./components/OrientationGate";
 import { StartScreen } from "./components/StartScreen";
 import { getCurrentEvent, choose, finalizeIfEndingCheck, getChoiceViews } from "./engine/gameEngine";
 import { clearSave, createInitialState, hasSavedGame, loadGame, saveGame } from "./engine/saveEngine";
@@ -11,6 +12,7 @@ import { shouldShowActTransition } from "./engine/visualEngine";
 import type { ActNumber, ChoiceResolution, GameEvent, GameState } from "./types/game";
 
 export default function App() {
+  const [isPortrait, setIsPortrait] = useState(() => window.matchMedia("(orientation: portrait)").matches);
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [savedExists, setSavedExists] = useState(false);
   const [message, setMessage] = useState("");
@@ -23,6 +25,28 @@ export default function App() {
 
   useEffect(() => {
     setSavedExists(hasSavedGame());
+  }, []);
+
+  useEffect(() => {
+    const orientation = window.matchMedia("(orientation: portrait)");
+    const updateOrientation = () => setIsPortrait(orientation.matches);
+
+    updateOrientation();
+    if (typeof orientation.addEventListener === "function") {
+      orientation.addEventListener("change", updateOrientation);
+    } else {
+      orientation.addListener(updateOrientation);
+    }
+    window.addEventListener("resize", updateOrientation);
+
+    return () => {
+      if (typeof orientation.removeEventListener === "function") {
+        orientation.removeEventListener("change", updateOrientation);
+      } else {
+        orientation.removeListener(updateOrientation);
+      }
+      window.removeEventListener("resize", updateOrientation);
+    };
   }, []);
 
   useEffect(() => {
@@ -112,6 +136,10 @@ export default function App() {
     saveGame(finalized);
     setPendingEvent(null);
     setPendingResolution(null);
+  }
+
+  if (isPortrait) {
+    return <OrientationGate />;
   }
 
   if (!gameState) {

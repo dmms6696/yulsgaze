@@ -49,6 +49,56 @@ button {
   border: 0;
 }
 
+.orientation-gate {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: max(28px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right))
+    max(28px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  overflow: hidden;
+  background: var(--night);
+  color: #f4f1e8;
+  text-align: center;
+}
+
+.orientation-gate .eyebrow {
+  margin: 8px 0 0;
+  color: #d9caa8;
+}
+
+.orientation-gate h1 {
+  margin: 0;
+  font-size: clamp(28px, 8vw, 48px);
+  line-height: 1.2;
+}
+
+.orientation-gate p:last-child {
+  max-width: 28rem;
+  margin: 0;
+  color: #c6d5d0;
+  line-height: 1.7;
+}
+
+.orientation-device {
+  width: 54px;
+  height: 86px;
+  padding: 6px;
+  border: 3px solid #d9caa8;
+  border-radius: 8px;
+  transform: rotate(90deg);
+}
+
+.orientation-device span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(217, 202, 168, 0.48);
+  border-radius: 3px;
+}
+
 .start-screen,
 .ending-screen {
   min-height: 100vh;
@@ -910,7 +960,7 @@ blockquote {
   grid-template-columns: 1fr 1fr;
 }
 
-@media (orientation: landscape) and (min-width: 900px) and (max-width: 1366px) and (max-height: 1050px) {
+@media (orientation: landscape) and (max-width: 1366px) and (max-height: 1050px) {
   body {
     overflow: hidden;
   }
@@ -927,7 +977,7 @@ blockquote {
     height: calc(100vh - 20px);
     height: calc(100svh - 20px);
     min-height: 0;
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 332px);
+    grid-template-columns: minmax(0, 1fr) clamp(190px, 34vw, 332px);
     gap: 14px;
     align-items: center;
   }
@@ -976,7 +1026,7 @@ blockquote {
     align-self: end;
     gap: 6px;
     max-width: 640px;
-    padding: 24px 24px 232px;
+    padding: clamp(12px, 3vh, 24px) clamp(12px, 2vw, 24px) clamp(132px, 30vh, 232px);
     text-shadow: 0 2px 16px rgba(8, 14, 18, 0.42);
   }
 
@@ -1079,7 +1129,7 @@ blockquote {
     height: 100vh;
     height: 100svh;
     min-height: 0;
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 36vw);
+    grid-template-columns: minmax(0, 1fr) clamp(190px, 34vw, 332px);
     gap: 10px;
     padding: 10px;
     overflow: hidden;
@@ -1087,7 +1137,7 @@ blockquote {
 
   .story-panel {
     min-height: 0;
-    grid-template-rows: minmax(190px, 31svh) minmax(0, 1fr);
+    grid-template-rows: clamp(110px, 31svh, 238px) minmax(0, 1fr);
     gap: 10px;
   }
 
@@ -1346,9 +1396,297 @@ blockquote {
     padding: 6px 8px;
     font-size: 12px;
   }
+
+  .act-transition-screen,
+  .ending-screen {
+    height: 100vh;
+    height: 100svh;
+    min-height: 0;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  .act-transition-panel {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr) clamp(190px, 34vw, 380px);
+    gap: 10px;
+  }
+
+  .act-transition-image {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .act-transition-copy {
+    max-height: 100%;
+    min-height: 0;
+    padding: 14px 6px;
+    overflow-y: auto;
+  }
+
+  .act-transition-copy h1 {
+    font-size: clamp(26px, 4vw, 48px);
+  }
+
+  .act-transition-copy p:not(.eyebrow) {
+    font-size: clamp(15px, 2vw, 20px);
+  }
+
+  .ending-screen {
+    grid-template-columns: minmax(0, 1fr) clamp(190px, 34vw, 332px);
+    gap: 10px;
+  }
+
+  .ending-card,
+  .ending-side {
+    min-height: 0;
+    padding: 14px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ending-image {
+    min-height: clamp(110px, 30svh, 240px);
+    margin-bottom: 12px;
+  }
+
+  .ending-card h1 {
+    font-size: clamp(28px, 4vw, 48px);
+  }
+
+  .ending-card p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  blockquote {
+    margin: 14px 0;
+    padding: 12px;
+    font-size: 16px;
+  }
 }
 
-@media (max-width: 980px) {
+@media (orientation: landscape) and (max-height: 520px) {
+  .start-screen {
+    padding: 6px max(12px, env(safe-area-inset-right)) 6px max(6px, env(safe-area-inset-left));
+  }
+
+  .start-hero {
+    height: calc(100svh - 12px);
+    gap: 6px;
+  }
+
+  .start-text-block {
+    gap: 3px;
+    padding: 10px 10px clamp(104px, 32vh, 138px);
+  }
+
+  .start-copy h1 {
+    font-size: clamp(22px, 4vw, 30px);
+  }
+
+  .start-copy .eyebrow {
+    font-size: 9px;
+  }
+
+  .start-copy .subtitle,
+  .start-copy .core-message {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .start-support-grid {
+    gap: 5px;
+    padding: 0 6px 6px;
+  }
+
+  .intro,
+  .content-notice {
+    min-height: 0;
+    padding: 7px;
+    font-size: 9px;
+    line-height: 1.32;
+  }
+
+  .start-card {
+    gap: 5px;
+    padding: 9px;
+  }
+
+  .start-card label {
+    font-size: 11px;
+  }
+
+  .start-card input {
+    min-height: 32px;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .start-card .primary-button,
+  .start-card .secondary-button,
+  .start-card .ghost-button,
+  .start-card .danger-button {
+    min-height: 30px;
+    padding: 5px 7px;
+    font-size: 10px;
+  }
+
+  .form-message {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .game-shell {
+    grid-template-columns: minmax(0, 1fr) clamp(190px, 34vw, 270px);
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .story-panel {
+    grid-template-rows: clamp(94px, 31svh, 150px) minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .story-card {
+    padding: 8px;
+  }
+
+  .story-card h1 {
+    font-size: 17px;
+  }
+
+  .act-question,
+  .place-time,
+  .event-meta span {
+    font-size: 9px;
+  }
+
+  .narration {
+    gap: 4px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .dialogue-box {
+    margin: 6px 0;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .choices {
+    gap: 4px;
+    margin-top: 7px;
+  }
+
+  .choice-button {
+    min-height: 34px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .choice-button small {
+    font-size: 9px;
+  }
+
+  .result-notice {
+    margin-top: 7px;
+    padding: 8px;
+    font-size: 10px;
+  }
+
+  .result-notice h2 {
+    font-size: 13px;
+  }
+
+  .stat-panel {
+    height: calc(100svh - 12px);
+    padding: 4px;
+  }
+
+  .panel-content {
+    gap: 4px;
+  }
+
+  .panel-section {
+    padding: 6px;
+  }
+
+  .panel-section h2,
+  .player-card h2,
+  .relation-card h3 {
+    font-size: 11px;
+  }
+
+  .player-card p,
+  .player-card strong,
+  .stat-bar-head,
+  .relation-card p,
+  .history-list li span,
+  .history-list li p {
+    font-size: 9px;
+  }
+
+  .flag-list span,
+  .change-chip {
+    min-height: 18px;
+    padding: 2px 5px;
+    font-size: 8px;
+  }
+
+  .panel-actions .secondary-button,
+  .panel-actions .danger-button,
+  .history-section .text-button {
+    min-height: 28px;
+    padding: 4px 5px;
+    font-size: 9px;
+  }
+
+  .act-transition-screen,
+  .ending-screen {
+    padding: 6px;
+  }
+
+  .act-transition-panel,
+  .ending-screen {
+    grid-template-columns: minmax(0, 1fr) clamp(190px, 34vw, 270px);
+    gap: 6px;
+  }
+
+  .act-transition-copy {
+    padding: 8px 4px;
+  }
+
+  .act-transition-copy h1 {
+    font-size: 22px;
+  }
+
+  .act-transition-copy p:not(.eyebrow) {
+    font-size: 12px;
+  }
+
+  .act-transition-copy .primary-button,
+  .ending-card .primary-button {
+    min-height: 32px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .ending-card,
+  .ending-side {
+    padding: 8px;
+  }
+
+  .ending-card p,
+  blockquote {
+    font-size: 10px;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 980px) {
   .game-shell,
   .start-hero,
   .act-transition-panel,
@@ -1376,7 +1714,7 @@ blockquote {
   }
 }
 
-@media (max-width: 640px) {
+@media (orientation: portrait) and (max-width: 640px) {
   .start-screen,
   .act-transition-screen,
   .ending-screen,

@@ -8,7 +8,7 @@ const assetPath = (path: string) => `./assets/${path}`;
 
 export const ASSETS = {
   title: {
-    main: assetPath("title/yul-gaze-main.webp"),
+    main: assetPath("title/yul-gaze-main.png"),
     classroomWindow: assetPath("title/classroom-window.webp"),
   },
   actTransitions: {
@@ -42,7 +42,7 @@ export const ASSETS = {
     dohyeHouseStreet: assetPath("backgrounds/dohye-house-street.webp"),
     neglectedHouse: assetPath("backgrounds/neglected-house.webp"),
     missingPosterStreet: assetPath("backgrounds/missing-poster-street.webp"),
-    starNight: assetPath("backgrounds/star-night.webp"),
+    starNight: assetPath("backgrounds/star-night.png"),
     polarisEnding: assetPath("backgrounds/polaris-ending.webp"),
   },
   illustrations: {

@@ -29,12 +29,16 @@ export function StartScreen({ message, hasSave, onStart, onContinue, onHelp, onR
             overlay={START_SCREEN_VISUAL.overlay}
             focalPoint={START_SCREEN_VISUAL.focalPoint}
           />
-          <p className="eyebrow">중학교 독서캠프 선택형 스토리</p>
-          <h1>{GAME_META.title}</h1>
-          <p className="subtitle">{GAME_META.subtitle}</p>
-          <p className="core-message">{GAME_META.coreMessage}</p>
-          <p className="intro">{GAME_META.intro}</p>
-          <p className="content-notice">{GAME_META.contentNotice}</p>
+          <div className="start-text-block">
+            <p className="eyebrow">중학교 독서캠프 선택형 스토리</p>
+            <h1>{GAME_META.title}</h1>
+            <p className="subtitle">{GAME_META.subtitle}</p>
+            <p className="core-message">{GAME_META.coreMessage}</p>
+          </div>
+          <div className="start-support-grid">
+            <p className="intro">{GAME_META.intro}</p>
+            <p className="content-notice">{GAME_META.contentNotice}</p>
+          </div>
         </div>
         <form
           className="start-card"
@@ -48,7 +52,7 @@ export function StartScreen({ message, hasSave, onStart, onContinue, onHelp, onR
             id="player-name"
             value={playerName}
             onChange={(event) => setPlayerName(event.target.value)}
-            placeholder="이야기 속 제3의 학생 이름을 입력하세요."
+            placeholder="학생 이름을 입력하세요."
             autoComplete="name"
           />
           {message ? <p className="form-message">{message}</p> : null}

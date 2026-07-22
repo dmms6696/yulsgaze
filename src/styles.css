@@ -69,6 +69,12 @@ button {
   padding: 42px 0;
 }
 
+.start-text-block,
+.start-support-grid {
+  display: grid;
+  gap: 12px;
+}
+
 .visual-asset-slot {
   position: relative;
   min-height: 240px;
@@ -904,7 +910,7 @@ blockquote {
   grid-template-columns: 1fr 1fr;
 }
 
-@media (orientation: landscape) and (min-width: 900px) and (max-width: 1280px) and (max-height: 900px) {
+@media (orientation: landscape) and (min-width: 900px) and (max-width: 1366px) and (max-height: 1050px) {
   body {
     overflow: hidden;
   }
@@ -921,47 +927,88 @@ blockquote {
     height: calc(100vh - 20px);
     height: calc(100svh - 20px);
     min-height: 0;
-    grid-template-columns: minmax(0, 1fr) minmax(290px, 330px);
-    gap: 12px;
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 332px);
+    gap: 14px;
+    align-items: center;
   }
 
   .start-copy {
+    position: relative;
     min-height: 0;
     padding: 0;
     display: grid;
-    align-content: start;
-    gap: 7px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    grid-template-rows: minmax(0, 1fr);
+    gap: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
   }
 
   .start-hero-image {
-    min-height: 132px;
-    height: min(24svh, 180px);
-    margin-bottom: 4px;
+    z-index: 1;
+    grid-area: 1 / 1;
+    min-height: 0;
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+  .start-hero-image .asset-placeholder {
+    padding: 0;
+  }
+
+  .start-hero-image .asset-placeholder > * {
+    display: none;
+  }
+
+  .start-hero-image.overlay-dim::after {
+    background: rgba(18, 27, 27, 0.14);
   }
 
   .start-copy .eyebrow {
     margin-bottom: 2px;
     font-size: 11px;
+    color: #d9caa8;
+  }
+
+  .start-text-block {
+    z-index: 2;
+    grid-area: 1 / 1;
+    align-self: end;
+    gap: 6px;
+    max-width: 640px;
+    padding: 24px 24px 232px;
+    text-shadow: 0 2px 16px rgba(8, 14, 18, 0.42);
   }
 
   .start-copy h1 {
+    color: #f5efe4;
     font-size: clamp(28px, 4vw, 42px);
     line-height: 1.08;
   }
 
-  .subtitle {
+  .start-copy .subtitle {
+    color: #bfded9;
     margin-top: 2px;
     font-size: 16px;
   }
 
-  .core-message {
+  .start-copy .core-message {
+    color: #ffffff;
     margin-top: 6px;
     font-size: 16px;
     line-height: 1.45;
+  }
+
+  .start-support-grid {
+    z-index: 3;
+    grid-area: 1 / 1;
+    align-self: end;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+    gap: 10px;
+    align-items: stretch;
+    padding: 0 14px 14px;
   }
 
   .intro,
@@ -971,15 +1018,32 @@ blockquote {
     line-height: 1.5;
   }
 
+  .intro {
+    min-height: 84px;
+    height: auto;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.88);
+  }
+
   .content-notice {
-    padding: 8px 10px;
+    min-height: 84px;
+    height: auto;
+    padding: 12px;
     border-left-width: 4px;
+    display: flex;
+    align-items: center;
   }
 
   .start-card {
     align-self: center;
-    gap: 8px;
-    padding: 16px;
+    width: 100%;
+    align-content: start;
+    gap: 12px;
+    padding: 20px;
   }
 
   .start-card input {

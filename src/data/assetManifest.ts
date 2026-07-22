@@ -186,12 +186,12 @@ export const ASSETS = {
     flyer: missingAsset(),
   },
   endings: {
-    polarisTogether: missingAsset(),
-    slowResee: missingAsset(),
-    safeObserver: missingAsset(),
-    hastyGaze: missingAsset(),
-    lateHeart: missingAsset(),
-    defaultGaze: missingAsset(),
+    polarisTogether: assetPath("endings/endings.polarisTogether.png"),
+    slowResee: assetPath("endings/endings.slowResee.png"),
+    safeObserver: assetPath("endings/endings.safeObserver.png"),
+    hastyGaze: assetPath("endings/endings.hastyGaze.png"),
+    lateHeart: assetPath("endings/endings.lateHeart.png"),
+    defaultGaze: assetPath("endings/endings.defaultGaze.png"),
   },
   ui: {
     scenePlaceholder: missingAsset(),

@@ -4,7 +4,7 @@
 - Used keys in source: 80
 - Missing manifest entries: 0
 - Used keys with missing files: 0
-- Used keys waiting for future files: 49
+- Used keys waiting for future files: 43
 
 ## Used Asset Keys
 
@@ -115,12 +115,6 @@
 - `backgrounds.polarisEnding`
 - `backgrounds.rainyRoad`
 - `backgrounds.schoolHallway`
-- `endings.defaultGaze`
-- `endings.hastyGaze`
-- `endings.lateHeart`
-- `endings.polarisTogether`
-- `endings.safeObserver`
-- `endings.slowResee`
 - `illustrations.columbariumTalk`
 - `illustrations.polarisPromise`
 - `props.bag`

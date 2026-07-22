@@ -1042,8 +1042,20 @@ blockquote {
     align-self: center;
     width: 100%;
     align-content: start;
+    justify-items: center;
     gap: 12px;
     padding: 20px;
+  }
+
+  .start-card label,
+  .start-card input,
+  .start-card .form-message,
+  .start-card .primary-button,
+  .start-card .secondary-button,
+  .start-card .ghost-button,
+  .start-card .danger-button {
+    width: min(100%, 276px);
+    justify-self: center;
   }
 
   .start-card input {
@@ -1054,8 +1066,13 @@ blockquote {
   .start-card .secondary-button,
   .start-card .ghost-button,
   .start-card .danger-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-height: 38px;
     padding: 8px 12px;
+    text-align: center;
+    white-space: normal;
   }
 
   .game-shell {
